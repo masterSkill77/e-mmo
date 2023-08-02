@@ -26,4 +26,7 @@ Route::prefix('v1')->group(function () {
         Route::get('/{agenceId}', [AgenceController::class, 'find']);
         Route::put('/{agenceId}', [AgenceController::class, 'update']);
     });
+
+    Route::prefix('immobilier')->group(function () {
+    });
 });

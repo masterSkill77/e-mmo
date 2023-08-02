@@ -18,7 +18,7 @@ class AgenceService
 
     public function getAgence(int $agenceId)
     {
-        return Agence::with('responsable')->find($agenceId);
+        return Agence::with('responsable', 'estates')->find($agenceId);
     }
 
     public function updateAgence(int $agenceId, array $data)

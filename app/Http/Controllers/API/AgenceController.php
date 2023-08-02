@@ -7,18 +7,27 @@ use App\Http\Requests\Agence\CreateAgenceRequest;
 use App\Http\Requests\Agence\UpdateAgenceRequest;
 use App\Models\Agence;
 use App\Services\AgenceService;
+use App\Services\ImageService;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AgenceController extends Controller
 {
-    public function __construct(public AgenceService $agenceService)
+    public function __construct(public AgenceService $agenceService, public ImageService $imageService)
     {
     }
     public function all(): JsonResponse
     {
-        $agences = $this->agenceService->getAll();
-        return response()->json($agences);
+        $photos = [
+            'image_path' => 'test',
+            'image_extension' => 'test',
+            'image_type' => 'test',
+            'imageable_type' => Agence::class,
+            'imageable_id' => 2,
+        ];
+        $photos = $this->imageService->store($photos);
+        // $agences = $this->agenceService->getAll();
+        return response()->json($photos);
     }
 
     public function store(CreateAgenceRequest $createAgenceRequest): JsonResponse

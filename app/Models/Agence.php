@@ -30,4 +30,9 @@ class Agence extends Model
     {
         return $this->belongsTo(User::class, 'responsable_id');
     }
+
+    public function estates()
+    {
+        return $this->hasMany(Estate::class, 'agence_id');
+    }
 }
