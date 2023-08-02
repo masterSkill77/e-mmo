@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Agence\CreateAgenceRequest;
+use App\Http\Requests\Agence\UpdateAgenceRequest;
 use App\Models\Agence;
 use App\Services\AgenceService;
 use Illuminate\Http\JsonResponse;
@@ -25,5 +26,13 @@ class AgenceController extends Controller
         if (!$agence)
             throw new NotFoundHttpException();
         return response()->json($agence);
+    }
+    public function update(int $agenceId, UpdateAgenceRequest $updateAgenceRequest): JsonResponse
+    {
+        $agence = $this->agenceService->getAgence($agenceId);
+        if (!$agence)
+            throw new NotFoundHttpException();
+        $status = $this->agenceService->updateAgence($agenceId, $updateAgenceRequest->toArray());
+        return response()->json($status);
     }
 }

@@ -23,5 +23,6 @@ Route::prefix('v1')->group(function () {
     Route::prefix('agence')->group(function () {
         Route::post('/', [AgenceController::class, 'store']);
         Route::get('/{agenceId}', [AgenceController::class, 'find']);
+        Route::put('/{agenceId}', [AgenceController::class, 'update']);
     });
 });

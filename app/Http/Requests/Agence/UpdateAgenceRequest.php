@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class CreateAgenceRequest extends FormRequest
+class UpdateAgenceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,19 +24,18 @@ class CreateAgenceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'agence_name' => 'bail|required|unique:agences',
-            'agence_phone' => 'required|unique:agences',
+            'agence_name' => 'bail||unique:agences',
+            'agence_phone' => '|unique:agences',
             'agence_site_url' => 'string',
-            'agence_adresse' => 'required',
-            'agence_status' => 'required',
-            'agence_mail' => 'required|email|unique:agences',
-            'agence_sender_mail' => 'required|email',
+            'agence_adresse' => 'string',
+            'agence_status' => 'string',
+            'agence_mail' => 'email|unique:agences',
+            'agence_sender_mail' => 'email',
             'agence_smtp_host' => 'string',
             'agence_smtp_port' => 'integer',
             'agence_smtp_username' => 'string',
-            'agence_logo_id' => 'required',
-            "agence_smtp_password" => 'required|string',
-            'responsable_id' => 'required|integer'
+            'agence_logo_id' => 'string',
+            "agence_smtp_password" => 'string',
         ];
     }
 

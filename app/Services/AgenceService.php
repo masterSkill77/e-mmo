@@ -14,4 +14,10 @@ class AgenceService
     {
         return Agence::with('responsable')->find($agenceId);
     }
+
+    public function updateAgence(int $agenceId, array $data)
+    {
+        $status = Agence::where('id', $agenceId)->update($data);
+        return $status;
+    }
 }
