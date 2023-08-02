@@ -15,6 +15,12 @@ class AgenceController extends Controller
     public function __construct(public AgenceService $agenceService)
     {
     }
+    public function all(): JsonResponse
+    {
+        $agences = $this->agenceService->getAll();
+        return response()->json($agences);
+    }
+
     public function store(CreateAgenceRequest $createAgenceRequest): JsonResponse
     {
         $agence = $this->agenceService->createAgence($createAgenceRequest->toArray());

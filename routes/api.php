@@ -22,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('v1')->group(function () {
     Route::prefix('agence')->group(function () {
         Route::post('/', [AgenceController::class, 'store']);
+        Route::get('/', [AgenceController::class, 'all']);
         Route::get('/{agenceId}', [AgenceController::class, 'find']);
         Route::put('/{agenceId}', [AgenceController::class, 'update']);
     });

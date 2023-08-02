@@ -10,6 +10,12 @@ class AgenceService
     {
         return Agence::create($data);
     }
+
+    public function getAll()
+    {
+        return Agence::orderBy('agence_name')->get();
+    }
+
     public function getAgence(int $agenceId)
     {
         return Agence::with('responsable')->find($agenceId);
