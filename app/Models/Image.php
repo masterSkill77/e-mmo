@@ -16,4 +16,9 @@ class Image extends Model
         'imageable_type',
         'imageable_id',
     ];
+
+    public function estate()
+    {
+        return $this->morphTo(Estate::class, 'imageable_id');
+    }
 }

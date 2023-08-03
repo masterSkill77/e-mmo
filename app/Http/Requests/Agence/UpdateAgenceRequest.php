@@ -2,12 +2,14 @@
 
 namespace App\Http\Requests\Agence;
 
+use App\Trait\Request\FailedValidation;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 class UpdateAgenceRequest extends FormRequest
 {
+    use FailedValidation;
     /**
      * Determine if the user is authorized to make this request.
      */

@@ -18,9 +18,20 @@ class Estate extends Model
 
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'is_published',
+        'price',
+        'state',
+        'paiement',
+        'description',
+        'agence_id',
+        'fb_published'
+    ];
+
     public function photos()
     {
-        return $this->hasMany(Image::class);
+        return $this->hasMany(Image::class, 'imageable_id');
     }
 
     public function scopeAgence(EloquentBuilder $query, int $agenceId)

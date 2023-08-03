@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AgenceController;
+use App\Http\Controllers\API\EstateController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,13 @@ Route::prefix('v1')->group(function () {
         Route::get('/', [AgenceController::class, 'all']);
         Route::get('/{agenceId}', [AgenceController::class, 'find']);
         Route::put('/{agenceId}', [AgenceController::class, 'update']);
+    });
+
+    Route::prefix('estate')->group(function () {
+        Route::post('/', [EstateController::class, 'store']);
+        Route::get('/', [EstateController::class, 'all']);
+        // Route::get('/{agenceId}', [EstateController::class, 'find']);
+        // Route::put('/{agenceId}', [EstateController::class, 'update']);
     });
 
     Route::prefix('immobilier')->group(function () {

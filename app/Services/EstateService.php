@@ -10,6 +10,12 @@ class EstateService
     {
         return Estate::with('agence', 'photos')->where('id', $estateId)->get();
     }
+
+    public function getAll()
+    {
+        return Estate::with('photos')->get();
+    }
+
     public function estateForAgence(int $agenceId)
     {
         return Estate::with('agence', 'photos')->agence($agenceId)->get();

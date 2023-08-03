@@ -2,10 +2,12 @@
 
 namespace App\Http\Requests\Estate;
 
+use App\Trait\Request\FailedValidation;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateEstateRequest extends FormRequest
 {
+    use FailedValidation;
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -24,11 +26,12 @@ class CreateEstateRequest extends FormRequest
         return [
             'title' => 'bail|required|string',
             'is_published' => 'required|bool',
+            'fb_published' => 'required|bool',
             'price' => 'required|integer',
-            'state' => 'required',
-            'paiement' => 'required',
-            'description' => 'required',
-            'agence_id' => 'required',
+            'state' => 'required|string',
+            'paiement' => 'required|string',
+            'description' => 'required|string',
+            'agence_id' => 'required|integer',
         ];
     }
 }
