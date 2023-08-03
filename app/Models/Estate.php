@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,5 +21,10 @@ class Estate extends Model
     public function photos()
     {
         return $this->hasMany(Image::class);
+    }
+
+    public function scopeAgence(EloquentBuilder $query, int $agenceId)
+    {
+        $query->where('agence_id', $agenceId);
     }
 }

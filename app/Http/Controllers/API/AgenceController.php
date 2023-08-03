@@ -18,16 +18,8 @@ class AgenceController extends Controller
     }
     public function all(): JsonResponse
     {
-        $photos = [
-            'image_path' => 'test',
-            'image_extension' => 'test',
-            'image_type' => 'test',
-            'imageable_type' => Agence::class,
-            'imageable_id' => 2,
-        ];
-        $photos = $this->imageService->store($photos);
-        // $agences = $this->agenceService->getAll();
-        return response()->json($photos);
+        $agences = $this->agenceService->getAll();
+        return response()->json($agences);
     }
 
     public function store(CreateAgenceRequest $createAgenceRequest): JsonResponse

@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('state');
             $table->string('paiement')->nullable();
             $table->longText('description');
-
             $table->unsignedBigInteger('agence_id');
             $table->foreign('agence_id')->references('id')->on('agences')->cascadeOnDelete();
             $table->timestamps();
