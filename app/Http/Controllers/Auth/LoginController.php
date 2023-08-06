@@ -15,7 +15,7 @@ class LoginController extends Controller
     public function __invoke(LoginUserRequest $data)
     {
         $user = $this->userService->login($data->email, $data->password);
-        // $token = $user->createToken(ENV('APP_KEY'));
-        return response()->json(['user' => $user,/*'token' => $token->plainTextToken*/]);
+        $token = $user->getAccessToken($user->id);
+        return response()->json(['user' => $user, 'token' => $token]);
     }
 }

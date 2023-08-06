@@ -16,6 +16,9 @@ class RegisterController extends Controller
     {
         $user = $this->userService->createUser($data->toArray());
         $token = $user->createToken(ENV('APP_KEY'));
+
+        $user->createAccess($token->plainTextToken);
+
         return response()->json(['user' => $user, 'token' => $token->plainTextToken]);
     }
 }
