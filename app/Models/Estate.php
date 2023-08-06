@@ -26,6 +26,7 @@ class Estate extends Model
         'paiement',
         'description',
         'agence_id',
+        'localistation',
         'fb_published'
     ];
 
