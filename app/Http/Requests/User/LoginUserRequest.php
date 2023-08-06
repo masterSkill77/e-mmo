@@ -2,12 +2,10 @@
 
 namespace App\Http\Requests\User;
 
-use App\Trait\Request\FailedValidation;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateUserRequest extends FormRequest
+class LoginUserRequest extends FormRequest
 {
-    use FailedValidation;
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -24,8 +22,7 @@ class CreateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email',
             'password' => 'required',
         ];
     }

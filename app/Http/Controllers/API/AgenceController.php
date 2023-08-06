@@ -24,7 +24,8 @@ class AgenceController extends Controller
 
     public function store(CreateAgenceRequest $createAgenceRequest): JsonResponse
     {
-        $agence = $this->agenceService->createAgence($createAgenceRequest->toArray());
+        $userId = auth()->user()->id;
+        $agence = $this->agenceService->createAgence($createAgenceRequest->toArray(), $userId);
         return response()->json($agence);
     }
     public function find(int $agenceId): JsonResponse

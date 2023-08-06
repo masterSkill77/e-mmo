@@ -29,7 +29,7 @@ class CreateEstateRequest extends FormRequest
             'fb_published' => 'required|bool',
             'price' => 'required|integer',
             'state' => 'required|string',
-            'localistation' => 'required|string',
+            'localisation' => 'required|string',
             'paiement' => 'required|string',
             'description' => 'required|string',
             'agence_id' => 'required|integer',

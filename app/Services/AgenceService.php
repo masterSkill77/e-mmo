@@ -7,9 +7,10 @@ use Illuminate\Support\Facades\DB;
 
 class AgenceService
 {
-    public function createAgence(array $data)
+    public function createAgence(array $data, int $userId)
     {
-        DB::transaction(function () use ($data) {
+        $data['responsable_id'] = $userId;
+        return DB::transaction(function () use ($data) {
             return Agence::create($data);
         });
     }
@@ -28,5 +29,10 @@ class AgenceService
     {
         $status = Agence::where('id', $agenceId)->update($data);
         return $status;
+    }
+
+    public function getAgenceFromUser(int $userId)
+    {
+        return Agence::with('responsable', 'estates')->where('responsable_id', $userId)->get();
     }
 }

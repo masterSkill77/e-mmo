@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\API\AgenceController;
 use App\Http\Controllers\API\EstateController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,17 +24,26 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('v1')->group(function () {
     Route::prefix('agence')->group(function () {
-        Route::post('/', [AgenceController::class, 'store']);
+        Route::group(['middleware' => 'auth:sanctum'], function () {
+            Route::post('/', [AgenceController::class, 'store']);
+            Route::put('/{agenceId}', [AgenceController::class, 'update']);
+        });
         Route::get('/', [AgenceController::class, 'all']);
         Route::get('/{agenceId}', [AgenceController::class, 'find']);
-        Route::put('/{agenceId}', [AgenceController::class, 'update']);
     });
 
     Route::prefix('estate')->group(function () {
-        Route::post('/', [EstateController::class, 'store']);
+        Route::group(['middleware' => 'auth:sanctum'], function () {
+            Route::post('/', [EstateController::class, 'store'])->middleware(['auth:sanctum']);
+        });
         Route::get('/', [EstateController::class, 'all']);
         // Route::get('/{agenceId}', [EstateController::class, 'find']);
         // Route::put('/{agenceId}', [EstateController::class, 'update']);
+    });
+
+    Route::prefix('auth')->group(function () {
+        Route::post('register', RegisterController::class);
+        Route::post('login', LoginController::class);
     });
 
     Route::prefix('immobilier')->group(function () {
