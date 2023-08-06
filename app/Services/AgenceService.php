@@ -3,12 +3,15 @@
 namespace App\Services;
 
 use App\Models\Agence;
+use Illuminate\Support\Facades\DB;
 
 class AgenceService
 {
     public function createAgence(array $data)
     {
-        return Agence::create($data);
+        DB::transaction(function () use ($data) {
+            return Agence::create($data);
+        });
     }
 
     public function getAll()

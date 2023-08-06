@@ -29,6 +29,7 @@ class AgenceFactory extends Factory
             'agence_logo_id' => 1,
             'agence_site_url' => $this->faker->url(),
             'agence_smtp_password' => '$2y$10$92IXUNpkjO0rOQ',
+            'responsable_id' => 1
         ];
     }
 }

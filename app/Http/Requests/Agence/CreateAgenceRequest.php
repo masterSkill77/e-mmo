@@ -36,6 +36,7 @@ class CreateAgenceRequest extends FormRequest
             'agence_smtp_username' => 'string',
             'agence_logo_id' => 'required',
             "agence_smtp_password" => 'required|string',
+            'responsable_id' => 'required|integer'
         ];
     }
 }

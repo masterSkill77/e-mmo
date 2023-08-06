@@ -23,7 +23,12 @@ class Agence extends Model
         'agence_smtp_username',
         'agence_logo_id',
         'agence_smtp_password',
+        'responsable_id'
     ];
+    public function responsable(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'responsable_id');
+    }
 
     public function estates()
     {
