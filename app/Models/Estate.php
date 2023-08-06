@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-
-use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Estate extends Model
 {
+    use HasFactory;
     const IS_PUBLISH = 1;
     const IS_DRAFT = 0;
     const MONTHLY = "MONTHLY";
@@ -16,7 +16,6 @@ class Estate extends Model
     const LOCATION = "À LOUER";
     const VENTE = "À VENDRE";
 
-    use HasFactory;
 
     protected $fillable = [
         'title',
@@ -34,9 +33,8 @@ class Estate extends Model
     {
         return $this->hasMany(Image::class, 'imageable_id');
     }
-
-    public function scopeAgence(EloquentBuilder $query, int $agenceId)
+    public function agence()
     {
-        $query->where('agence_id', $agenceId);
+        return $this->belongsTo(Agence::class, 'agence_id');
     }
 }

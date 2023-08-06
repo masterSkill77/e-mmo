@@ -34,11 +34,12 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::prefix('estate')->group(function () {
-        Route::group(['middleware' => 'auth:sanctum'], function () {
-            Route::post('/', [EstateController::class, 'store'])->middleware(['auth:sanctum']);
+        Route::group(['middleware' => 'auth:sanctum', 'prefix' => '/{agenceId}'], function () {
+            Route::post('/', [EstateController::class, 'store']);
+            Route::get('/mine', [EstateController::class, 'mine']);
+            Route::get('/{estate}', [EstateController::class, 'find']);
         });
         Route::get('/', [EstateController::class, 'all']);
-        // Route::get('/{agenceId}', [EstateController::class, 'find']);
         // Route::put('/{agenceId}', [EstateController::class, 'update']);
     });
 

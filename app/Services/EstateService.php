@@ -18,7 +18,12 @@ class EstateService
 
     public function estateForAgence(int $agenceId)
     {
-        return Estate::with('agence', 'photos')->agence($agenceId)->get();
+        return Estate::where('agence_id', $agenceId)->with('agence', 'photos')->get();
+    }
+
+    public function find(int $estateId)
+    {
+        return Estate::where('id', $estateId)->with('agence', 'photos')->first();
     }
     public function createEstate(array $data)
     {

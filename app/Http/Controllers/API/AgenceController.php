@@ -9,6 +9,7 @@ use App\Models\Agence;
 use App\Services\AgenceService;
 use App\Services\ImageService;
 use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AgenceController extends Controller
@@ -26,7 +27,7 @@ class AgenceController extends Controller
     {
         $userId = auth()->user()->id;
         $agence = $this->agenceService->createAgence($createAgenceRequest->toArray(), $userId);
-        return response()->json($agence);
+        return response()->json($agence, Response::HTTP_CREATED);
     }
     public function find(int $agenceId): JsonResponse
     {
