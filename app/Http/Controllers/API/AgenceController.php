@@ -43,4 +43,10 @@ class AgenceController extends Controller
         $status = $this->agenceService->updateAgence($agenceId, $updateAgenceRequest->toArray());
         return response()->json($status);
     }
+    public function mine()
+    {
+        $userId = auth()->user()->id;
+        $agences = $this->agenceService->getAgenceFromUser($userId);
+        return response()->json($agences);
+    }
 }

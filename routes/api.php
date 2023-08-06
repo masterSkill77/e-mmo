@@ -27,6 +27,7 @@ Route::prefix('v1')->group(function () {
         Route::group(['middleware' => 'auth:sanctum'], function () {
             Route::post('/', [AgenceController::class, 'store']);
             Route::put('/{agenceId}', [AgenceController::class, 'update']);
+            Route::get('/mine', [AgenceController::class, 'mine']);
         });
         Route::get('/', [AgenceController::class, 'all']);
         Route::get('/{agenceId}', [AgenceController::class, 'find']);
