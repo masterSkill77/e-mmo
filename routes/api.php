@@ -23,6 +23,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix('v1')->group(function () {
+    Route::prefix('{agenceId}')->group(function () {
+        Route::get('/role', function (Request $request, int $agenceId) {
+            return response()->json($agenceId);
+        });
+    });
     Route::prefix('agence')->group(function () {
         Route::group(['middleware' => 'auth:sanctum'], function () {
             Route::post('/', [AgenceController::class, 'store']);

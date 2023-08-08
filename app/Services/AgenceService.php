@@ -3,16 +3,22 @@
 namespace App\Services;
 
 use App\Models\Agence;
+use Exception;
 use Illuminate\Support\Facades\DB;
 
 class AgenceService
 {
     public function createAgence(array $data, int $userId)
     {
-        $data['responsable_id'] = $userId;
-        return DB::transaction(function () use ($data) {
-            return Agence::create($data);
-        });
+        if (count($this->getAgenceFromUser($userId)) == 0) {
+            $data['responsable_id'] = $userId;
+
+            return DB::transaction(function () use ($data) {
+                return Agence::create($data);
+            });
+        } else {
+            throw new Exception('User can not create multiple agence');
+        }
     }
 
     public function getAll()

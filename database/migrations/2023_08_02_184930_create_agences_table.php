@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('agence_logo_id')->nullable();
             $table->string('agence_site_url', 255)->nullable();
             $table->string("agence_smtp_password");
-            $table->unsignedBigInteger('responsable_id');
+            $table->unsignedBigInteger('responsable_id')->unique();
             $table->foreign('responsable_id')->references('id')->on('users')->cascadeOnDelete();
             $table->timestamps();
         });
