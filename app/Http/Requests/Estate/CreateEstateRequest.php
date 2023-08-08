@@ -26,11 +26,11 @@ class CreateEstateRequest extends FormRequest
         return [
             'title' => 'bail|required|string',
             'is_published' => 'required|bool',
-            'fb_published' => 'required|bool',
+            'fb_published' => 'bool',
             'price' => 'required|integer',
             'state' => 'required|string',
             'localisation' => 'required|string',
-            'paiement' => 'required|string',
+            'paiement' => 'string',
             'description' => 'required|string',
             'agence_id' => 'required|integer',
         ];
