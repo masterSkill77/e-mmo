@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string("role_name", 20);
             $table->unsignedBigInteger('agence_id');
             $table->foreign('agence_id')->on('agences')->references('id');
-            $table->string('permission');
+            $table->text('permission');
             $table->timestamps();
         });
     }

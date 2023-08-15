@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\API\AgenceController;
 use App\Http\Controllers\API\EstateController;
+use App\Http\Controllers\API\RoleController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Models\Agence;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,11 +25,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix('v1')->group(function () {
-    Route::prefix('{agenceId}')->group(function () {
-        Route::get('/role', function (Request $request, int $agenceId) {
-            return response()->json($agenceId);
-        });
+    Route::prefix('{agence}')->group(function () {
+        Route::get('/role', [RoleController::class, 'roleForAgence']);
+        Route::post('/role', [RoleController::class, 'store']);
+        Route::delete('/role/{role}', [RoleController::class, 'deleteRole']);
     });
+    // ->middleware(['auth:sanctum']);
     Route::prefix('agence')->group(function () {
         Route::group(['middleware' => 'auth:sanctum'], function () {
             Route::post('/', [AgenceController::class, 'store']);
@@ -43,6 +46,8 @@ Route::prefix('v1')->group(function () {
             Route::post('/', [EstateController::class, 'store']);
             Route::get('/mine', [EstateController::class, 'mine']);
             Route::get('/{estate}', [EstateController::class, 'find']);
+            Route::put('/{estate}', [EstateController::class, 'update']);
+            Route::delete('/{estate}', [EstateController::class, 'destroy']);
         });
         Route::get('/', [EstateController::class, 'all']);
         // Route::put('/{agenceId}', [EstateController::class, 'update']);

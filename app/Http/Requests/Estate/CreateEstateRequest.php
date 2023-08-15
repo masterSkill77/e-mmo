@@ -30,7 +30,7 @@ class CreateEstateRequest extends FormRequest
             'price' => 'required|integer',
             'state' => 'required|string',
             'localisation' => 'required|string',
-            'paiement' => 'string',
+            'paiement' => '',
             'description' => 'required|string',
             'agence_id' => 'required|integer',
         ];

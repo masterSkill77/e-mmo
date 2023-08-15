@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Requests\Estate\CreateEstateRequest;
 use App\Models\Estate;
 
 class EstateService
@@ -28,5 +29,13 @@ class EstateService
     public function createEstate(array $data)
     {
         return Estate::create($data);
+    }
+    public function destroy(Estate $estate)
+    {
+        return $estate->delete();
+    }
+    public function update(Estate $estate, CreateEstateRequest $createEstateRequest)
+    {
+        return $estate->update($createEstateRequest->toArray());
     }
 }

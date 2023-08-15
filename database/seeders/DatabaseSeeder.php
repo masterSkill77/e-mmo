@@ -18,6 +18,5 @@ class DatabaseSeeder extends Seeder
                 \App\Models\Estate::factory()->count(2)
             )
         )->create();
-        \App\Models\Role::factory(4)->create();
     }
 }
