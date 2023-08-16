@@ -26,9 +26,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('v1')->group(function () {
     Route::prefix('{agence}')->group(function () {
-        Route::get('/role', [RoleController::class, 'roleForAgence']);
-        Route::post('/role', [RoleController::class, 'store']);
-        Route::delete('/role/{role}', [RoleController::class, 'deleteRole']);
+
+        Route::prefix("role")->group(function () {
+            Route::get('/', [RoleController::class, 'roleForAgence']);
+            Route::post('/', [RoleController::class, 'store']);
+            Route::delete('/{role}', [RoleController::class, 'deleteRole']);
+        });
+
+        Route::prefix("staff")->group(function(){
+            
+        });
     });
     // ->middleware(['auth:sanctum']);
     Route::prefix('agence')->group(function () {
