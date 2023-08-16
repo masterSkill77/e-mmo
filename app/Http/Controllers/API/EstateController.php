@@ -15,7 +15,7 @@ class EstateController extends Controller
     }
     public function store(CreateEstateRequest $createEstateRequest)
     {
-        $estate = $this->estateService->createEstate($createEstateRequest->toArray());
+        $estate = $this->estateService->createEstate($createEstateRequest->toArray(), $createEstateRequest->allFiles());
         return response()->json($estate, Response::HTTP_CREATED);
     }
 

@@ -24,7 +24,7 @@ class EstateFactory extends Factory
             'state' => Estate::LOCATION,
             'paiement' => Estate::YEARLY,
             'description' => '<p>Test</p>',
-            'localisation' => '<p>Test</p>',
+            'localisation' => '[47.517451, -18.9333]',
             'agence_id' => 1,
         ];
     }

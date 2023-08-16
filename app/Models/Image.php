@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     use HasFactory;
+    const LOGO = "LOGO";
+    const ILLUSTRATION = "ILLUSTRATION";
     public $timestamps = false;
     protected $fillable = [
         'image_path',
