@@ -23,7 +23,7 @@ class EstateService
 
     public function estateForAgence(int $agenceId)
     {
-        return Estate::where('agence_id', $agenceId)->with('agence', 'photos')->get();
+        return Estate::where('agence_id', $agenceId)->with('agence', 'photos')->paginate(20);
     }
 
     public function find(int $estateId)

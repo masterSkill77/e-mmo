@@ -10,7 +10,7 @@ class MediaService
     public function add($file, $imageType, $typeOwner, $ownerId, $agenceId)
     {
         $originalName = $file->getClientOriginalName();
-        $path = "/$agenceId/$ownerId/$originalName";
+        $path = "/storage/$agenceId/$ownerId/$originalName";
 
         Storage::disk('local')->put($path, file_get_contents($file));
 
