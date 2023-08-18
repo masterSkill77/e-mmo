@@ -37,6 +37,7 @@ Route::prefix('v1')->group(function () {
         Route::prefix("staff")->group(function () {
             Route::get("/", [StaffController::class, 'myStaff']);
             Route::post("/", [StaffController::class, 'addStaff']);
+            Route::delete("/{staffId}/{type}", [StaffController::class, 'removeStaff']);
         });
     });
     // ->middleware(['auth:sanctum']);

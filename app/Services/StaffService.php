@@ -39,4 +39,14 @@ class StaffService
         ];
         return $staff;
     }
+
+    public function removeStaff(int $staffId, string $type)
+    {
+        if ($type == Staff::PENDING) {
+            $status = Request::where("id", $staffId)->delete();
+        } else {
+            $status = Staff::where("id", $staffId)->delete();
+        }
+        return $status;
+    }
 }

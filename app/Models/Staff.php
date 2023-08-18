@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Staff extends Model
 {
+    public const PENDING = "pending";
+    public const CURRENT = "current";
     protected $table = "staffs";
     use HasFactory;
     protected $fillable = ['user_id', 'agence_id', 'role_id'];
