@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\AgenceController;
 use App\Http\Controllers\API\EstateController;
 use App\Http\Controllers\API\RoleController;
+use App\Http\Controllers\API\StaffController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Models\Agence;
@@ -33,8 +34,9 @@ Route::prefix('v1')->group(function () {
             Route::delete('/{role}', [RoleController::class, 'deleteRole']);
         });
 
-        Route::prefix("staff")->group(function(){
-            
+        Route::prefix("staff")->group(function () {
+            Route::get("/", [StaffController::class, 'myStaff']);
+            Route::post("/", [StaffController::class, 'addStaff']);
         });
     });
     // ->middleware(['auth:sanctum']);

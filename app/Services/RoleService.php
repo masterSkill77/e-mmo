@@ -26,4 +26,8 @@ class RoleService
     {
         return Role::where("id", $roleId)->delete();
     }
+    public function getRole(int $roleId)
+    {
+        return Role::where("id", $roleId)->first();
+    }
 }

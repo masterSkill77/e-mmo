@@ -25,7 +25,7 @@ class UserService
             throw new PasswordMismatchException();
         return $user;
     }
-    private function findUser(string $email): User | null
+    public function findUser(string $email): User | null
     {
         return User::where('email', $email)->first();
     }
