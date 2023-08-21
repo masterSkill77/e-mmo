@@ -26,12 +26,12 @@ class UpdateAgenceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'agence_name' => 'bail||unique:agences',
-            'agence_phone' => '|unique:agences',
+            'agence_name' => 'bail|',
+            'agence_phone' => '',
             'agence_site_url' => 'string',
             'agence_adresse' => 'string',
             'agence_status' => 'string',
-            'agence_mail' => 'email|unique:agences',
+            'agence_mail' => 'email|',
             'agence_sender_mail' => 'email',
             'agence_smtp_host' => 'string',
             'agence_smtp_port' => 'integer',
