@@ -32,4 +32,9 @@ class StaffController extends Controller
         $status = $this->staffService->removeStaff($staffId, $type);
         return response()->json($status);
     }
+    public function accept(Agence $agence, string $encryptedEmail)
+    {
+        $staff = $this->staffService->accept($encryptedEmail);
+        return response()->redirectTo(env("CLIENT_APP_URL"));
+    }
 }

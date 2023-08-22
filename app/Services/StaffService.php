@@ -6,6 +6,7 @@ use App\Jobs\SendRequest;
 use App\Models\Request;
 use App\Models\Staff;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Crypt;
 
 class StaffService
 {
@@ -63,7 +64,18 @@ class StaffService
         }
         return $status;
     }
-    public function accept($email)
+    public function accept($cryptedEmail)
     {
+        $email = Crypt::decryptString($cryptedEmail);
+        $request = Request::where("email", $email)->first();
+        $user = $this->userService->findUser($email);
+        $staff = new Staff([
+            'user_id' => $user->id,
+            'agence_id' => $request->agence_id,
+            'role_id' => $request->role_id
+        ]);
+        $staff->save();
+        $request->delete();
+        return;
     }
 }
