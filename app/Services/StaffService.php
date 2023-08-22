@@ -12,16 +12,30 @@ class StaffService
     public function __construct(private readonly UserService $userService, private readonly RoleService $roleService, private readonly AgenceService $agenceService)
     {
     }
+    public function isAlreadyStaff(int $userId)
+    {
+        if (Staff::where("id", $userId)->first())
+            return true;
+        return false;
+    }
+    public function isPendingRequest(string $email)
+    {
+        if (Request::where("email", $email)->first())
+            return true;
+        return false;
+    }
     public function addStaff(string $email, int $agenceId, int $roleId)
     {
         $user = $this->userService->findUser($email);
         if ($user) {
-            $staff = new Staff([
-                'user_id' => $user->id,
-                'agence_id' => $agenceId,
-                'role_id' => $roleId
-            ]);
-            $staff->save();
+            if ((!$this->isAlreadyStaff($user->id) || !$this->isPendingRequest($user->email))) {
+                $staff = new Staff([
+                    'user_id' => $user->id,
+                    'agence_id' => $agenceId,
+                    'role_id' => $roleId
+                ]);
+                $staff->save();
+            }
         } else {
             $staff = [];
             $role = $this->roleService->getRole($roleId);
@@ -48,5 +62,8 @@ class StaffService
             $status = Staff::where("id", $staffId)->delete();
         }
         return $status;
+    }
+    public function accept($email)
+    {
     }
 }
