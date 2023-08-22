@@ -13,6 +13,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
 
 class SendRequest implements ShouldQueue
@@ -39,7 +40,7 @@ class SendRequest implements ShouldQueue
         ]);
         $email = $this->email;
         $this->agence->configureEmails();
-        Mail::to($email)->send(new AgenceSendRequest($this->agence));
+        Mail::to($email)->send(new AgenceSendRequest($this->agence, Crypt::encryptString($this->email)));
         $request->save();
     }
 }

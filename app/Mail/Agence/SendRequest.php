@@ -17,7 +17,7 @@ class SendRequest extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(public Agence $agence)
+    public function __construct(public Agence $agence, public string $email)
     {
     }
 
