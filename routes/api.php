@@ -7,6 +7,7 @@ use App\Http\Controllers\API\StaffController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Models\Agence;
+use App\Services\SmtpService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -38,6 +39,14 @@ Route::prefix('v1')->group(function () {
             Route::get("/", [StaffController::class, 'myStaff']);
             Route::post("/", [StaffController::class, 'addStaff']);
             Route::delete("/{staffId}/{type}", [StaffController::class, 'removeStaff']);
+        });
+
+        Route::prefix('smtp')->group(function () {
+            Route::get("/", function (Agence $agence) {
+                $credentials = (new SmtpService())->configureMails($agence->id);
+
+                return response()->json($credentials);
+            });
         });
     });
     // ->middleware(['auth:sanctum']);

@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use App\Trait\UseMailFromAgence;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Agence extends Model
 {
-    use HasFactory;
+
+    use HasFactory, UseMailFromAgence;
 
     protected $fillable = [
         'agence_name',
