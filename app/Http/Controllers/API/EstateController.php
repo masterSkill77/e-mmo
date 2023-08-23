@@ -43,7 +43,7 @@ class EstateController extends Controller
     }
     public function update(int $agenceId, Estate $estate, CreateEstateRequest $createEstateRequest)
     {
-        $updated = $this->estateService->update($estate, $createEstateRequest);
+        $updated = $this->estateService->update($estate, $createEstateRequest, $createEstateRequest->allFiles());
         return response()->json($updated);
     }
 }
