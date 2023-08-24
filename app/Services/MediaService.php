@@ -29,7 +29,8 @@ class MediaService
 
     public function update($file, $imageType, $typeOwner, $ownerId, $agenceId)
     {
-        $images = Image::where("imageable_type", Estate::class)->get();
+        $images = Image::where("imageable_type", Estate::class)->where("imageable_id", $ownerId)->get();
+        return $images;
         foreach ($images as $image) {
             unlink($image->image_path);
         }

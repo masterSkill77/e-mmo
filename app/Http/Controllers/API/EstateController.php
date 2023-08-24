@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Estate\CreateEstateRequest;
 use App\Models\Estate;
 use App\Services\EstateService;
+use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class EstateController extends Controller
@@ -41,8 +42,9 @@ class EstateController extends Controller
         $deleted = $this->estateService->destroy($estate);
         return response()->json($deleted);
     }
-    public function update(int $agenceId, Estate $estate, CreateEstateRequest $createEstateRequest)
+    public function update(int $agenceId, Estate $estate, Request $createEstateRequest)
     {
+
         $updated = $this->estateService->update($estate, $createEstateRequest, $createEstateRequest->allFiles());
         return response()->json($updated);
     }

@@ -48,12 +48,13 @@ class EstateService
     }
     public function update(Estate $estate, CreateEstateRequest $createEstateRequest, $files)
     {
-        if (is_array($files))
+        if (is_array($files)) {
             foreach ($files as $file) {
+                return $file->getClientOriginalName();
                 $this->mediaService->update($file, Image::ILLUSTRATION, Estate::class, $estate->id, $createEstateRequest->agence_id);
             }
-        else
+        } else
             $this->mediaService->update($files, '', Estate::class, $estate->id, $createEstateRequest->agence_id);
-        return $estate->update($createEstateRequest->toArray());
+        // return $estate->update($createEstateRequest->toArray());
     }
 }
