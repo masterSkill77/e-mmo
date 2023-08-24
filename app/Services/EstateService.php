@@ -55,6 +55,6 @@ class EstateService
             }
         } else
             $this->mediaService->update($files, '', Estate::class, $estate->id, $createEstateRequest->agence_id);
-        // return $estate->update($createEstateRequest->toArray());
+        return $estate->update($createEstateRequest->toArray());
     }
 }
