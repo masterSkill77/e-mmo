@@ -33,6 +33,12 @@ class Estate extends Model
     {
         return $this->hasMany(Image::class, 'imageable_id');
     }
+
+    public function reactions()
+    {
+        return $this->hasMany(Reaction::class, 'estate_id');
+    }
+
     public function agence()
     {
         return $this->belongsTo(Agence::class, 'agence_id');
