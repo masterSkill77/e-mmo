@@ -6,6 +6,7 @@ use App\Http\Controllers\API\RoleController;
 use App\Http\Controllers\API\StaffController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Models\Agence;
 use App\Services\SmtpService;
 use Illuminate\Http\Request;
@@ -75,6 +76,7 @@ Route::prefix('v1')->group(function () {
     Route::prefix('auth')->group(function () {
         Route::post('register', RegisterController::class);
         Route::post('login', LoginController::class);
+        Route::get("verify-email/{email}", VerifyEmailController::class);
     });
 
     Route::prefix('immobilier')->group(function () {
