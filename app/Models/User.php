@@ -49,4 +49,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Agence::class, 'responsable_id');
     }
+
+    protected $dispatchesEvents = [
+        'created' => \App\Events\User\UserRegistered::class,
+    ];
 }
