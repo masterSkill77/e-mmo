@@ -14,6 +14,7 @@ class UserService
 {
     public function createUser(array $data)
     {
+        $data["user_type"] = User::AGENCE_OWNER;
         return User::create($data);
     }
 

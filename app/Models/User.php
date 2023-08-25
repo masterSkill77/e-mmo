@@ -13,7 +13,8 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, OneTimeToken;
-
+    const CITOYEN = 0;
+    const AGENCE_OWNER = 1;
     /**
      * The attributes that are mass assignable.
      *
