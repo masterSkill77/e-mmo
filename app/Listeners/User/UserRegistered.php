@@ -24,7 +24,7 @@ class UserRegistered
      */
     public function handle(UserRegisteredEvent $event): void
     {
-        $link = env("APP_URL") . "/api/v1/verify-email/" . Crypt::encryptString($event->user->email);
+        $link = env("APP_URL") . "/api/v1/auth/verify-email/" . Crypt::encryptString($event->user->email);
         Mail::to($event->user->email)->send(new ConfirmationMail($event->user, $link));
     }
 }
