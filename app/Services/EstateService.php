@@ -25,7 +25,10 @@ class EstateService
     {
         return Estate::where('agence_id', $agenceId)->with('agence', 'photos')->paginate(20);
     }
-
+    public function all()
+    {
+        return Estate::with('photos', 'agence')->get();
+    }
     public function find(int $estateId)
     {
         return Estate::where('id', $estateId)->with('agence', 'photos')->first();
