@@ -37,6 +37,14 @@ class EstateController extends Controller
         $estate = $this->estateService->find($estate->id);
         return response()->json($estate);
     }
+
+    public function getAll()
+    {
+        $estates = $this->estateService->all();
+        return response()->json($estates);
+    }
+
+
     public function destroy(int $agenceId, Estate $estate)
     {
         $deleted = $this->estateService->destroy($estate);

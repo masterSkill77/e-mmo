@@ -12,6 +12,9 @@ use App\Services\SmtpService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+require __DIR__ . '/public.php';
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
