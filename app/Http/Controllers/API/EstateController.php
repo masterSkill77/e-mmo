@@ -23,7 +23,9 @@ class EstateController extends Controller
     public function all()
     {
         $estate = $this->estateService->getAll();
-        return response()->json($estate);
+        $estates = $estate->toArray();
+        shuffle($estates);
+        return response()->json($estates);
     }
     public function mine(int $agenceId)
     {
@@ -37,6 +39,14 @@ class EstateController extends Controller
         $estate = $this->estateService->find($estate->id);
         return response()->json($estate);
     }
+
+    public function getAll()
+    {
+        $estates = $this->estateService->all();
+        return response()->json($estates);
+    }
+
+
     public function destroy(int $agenceId, Estate $estate)
     {
         $deleted = $this->estateService->destroy($estate);
