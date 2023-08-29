@@ -18,7 +18,7 @@ class EstateService
 
     public function getAll()
     {
-        return Estate::with('photos', 'agence')->get();
+        return Estate::with('photos', 'agence')->orderBy('created_at', 'desc')->get();
     }
 
     public function estateForAgence(int $agenceId)
@@ -27,7 +27,7 @@ class EstateService
     }
     public function all()
     {
-        return Estate::with('photos', 'agence')->get();
+        return Estate::with('photos', 'agence')->orderBy('created_at', 'desc')->get();
     }
     public function find(int $estateId)
     {

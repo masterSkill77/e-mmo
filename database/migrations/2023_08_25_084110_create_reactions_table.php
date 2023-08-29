@@ -14,9 +14,8 @@ return new class extends Migration
         Schema::create('reactions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('estate_id');
-            $table->unsignedBigInteger('user_id');
+            $table->string('firebase_user');
 
-            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('estate_id')->references('id')->on('estates');
             $table->unique(['user_id', 'estate_id']);
             $table->timestamps();
