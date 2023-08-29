@@ -22,9 +22,7 @@ class EstateController extends Controller
 
     public function all()
     {
-        $estate = $this->estateService->getAll();
-        $estates = $estate->toArray();
-        shuffle($estates);
+        $estates = $this->estateService->getAll();
         return response()->json($estates);
     }
     public function mine(int $agenceId)

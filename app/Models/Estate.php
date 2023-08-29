@@ -43,4 +43,7 @@ class Estate extends Model
     {
         return $this->belongsTo(Agence::class, 'agence_id');
     }
+    protected $casts = [
+        'created_at' => 'date',
+    ];
 }

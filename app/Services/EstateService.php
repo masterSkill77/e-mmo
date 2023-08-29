@@ -13,25 +13,25 @@ class EstateService
     }
     public function getEstate(int $estateId)
     {
-        return Estate::with('agence', 'photos')->where('id', $estateId)->get();
+        return Estate::with('agence', 'photos', 'reactions')->where('id', $estateId)->get();
     }
 
     public function getAll()
     {
-        return Estate::with('photos', 'agence')->get();
+        return Estate::with('photos', 'agence', 'reactions')->orderBy('created_at', 'desc')->get();
     }
 
     public function estateForAgence(int $agenceId)
     {
-        return Estate::where('agence_id', $agenceId)->with('agence', 'photos')->paginate(20);
+        return Estate::where('agence_id', $agenceId)->with('agence', 'photos', 'reactions')->paginate(20);
     }
     public function all()
     {
-        return Estate::with('photos', 'agence')->get();
+        return Estate::with('photos', 'agence', 'reactions')->orderBy('created_at', 'desc')->get();
     }
     public function find(int $estateId)
     {
-        return Estate::where('id', $estateId)->with('agence', 'photos')->first();
+        return Estate::where('id', $estateId)->with('agence', 'photos', 'reactions')->first();
     }
     public function createEstate(array $data, $files)
     {
