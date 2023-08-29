@@ -9,7 +9,7 @@ class Reaction extends Model
 {
     use HasFactory;
     public $fillable = [
-        'firebase_user',
+        'user_id',
         'estate_id'
     ];
 

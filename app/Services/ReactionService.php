@@ -6,11 +6,11 @@ use App\Models\Reaction;
 
 class ReactionService
 {
-    public function add_reaction(int $estateId, string $firebaseUser)
+    public function add_reaction(int $estateId, int $user_id)
     {
         $reaction = new Reaction([
             'estate_id' => $estateId,
-            'firebase_user' => $firebaseUser
+            'user_id' => $user_id
         ]);
         $reaction->save();
         return $reaction;
