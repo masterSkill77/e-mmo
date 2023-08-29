@@ -13,7 +13,7 @@ class EstateService
     }
     public function getEstate(int $estateId)
     {
-        return Estate::with('agence', 'photos', 'reactions')->where('id', $estateId)->get();
+        return Estate::with('agence', 'photos', 'reactions')->where('id', $estateId)->first();
     }
 
     public function getAll()

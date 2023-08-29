@@ -46,4 +46,8 @@ class Estate extends Model
     protected $casts = [
         'created_at' => 'date',
     ];
+    public function commentaires()
+    {
+        return $this->hasMany(Commentaire::class, 'estate_id');
+    }
 }
