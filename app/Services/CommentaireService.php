@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Collection;
 
 class CommentaireService
 {
-    public function registerCommentaire(string $contenu, int $estateId, int | null $user_id = null, string | null $email = null)
+    public function registerCommentaire(string $contenu, int $estateId, int | string $user_id, string | null $email = null)
     {
+        $user_id = $user_id == "false" ? null : $user_id;
         $coms = new Commentaire([
             'estate_id' => $estateId,
             'contenu' => $contenu,

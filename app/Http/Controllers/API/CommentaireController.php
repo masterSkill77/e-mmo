@@ -12,7 +12,7 @@ class CommentaireController extends Controller
     public function __construct(public CommentaireService $commentaireService)
     {
     }
-    public function registerCommentaire(Estate $estate, int $user_id = null)
+    public function registerCommentaire(Estate $estate, string | int $user_id)
     {
         $contenu = request("contenu");
         $email = request("email");
