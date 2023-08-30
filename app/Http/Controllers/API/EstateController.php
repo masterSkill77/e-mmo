@@ -38,6 +38,13 @@ class EstateController extends Controller
         return response()->json($estate);
     }
 
+    public function getImmo(Estate $estate)
+    {
+        $estate = $this->estateService->getEstate($estate->id);
+
+        return response()->json($estate);
+    }
+
     public function getAll()
     {
         $estates = $this->estateService->all();
