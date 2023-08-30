@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Contact extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'user_id',
+        'contact_id'
+    ];
+
+    public function agence()
+    {
+        return $this->belongsTo(Agence::class, 'contact_id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
