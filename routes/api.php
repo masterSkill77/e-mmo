@@ -34,6 +34,7 @@ Route::prefix('v1')->group(function () {
         $user = (new UserService)->findUser($email);
         return response()->json($user);
     });
+
     Route::prefix('{agence}')->group(function () {
 
         Route::prefix("role")->group(function () {
