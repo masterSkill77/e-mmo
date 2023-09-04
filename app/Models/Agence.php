@@ -20,6 +20,7 @@ class Agence extends Model
         'agence_mail',
         'agence_sender_mail',
         'agence_smtp_host',
+        'active',
         'agence_site_url',
         'agence_smtp_port',
         'agence_smtp_username',
