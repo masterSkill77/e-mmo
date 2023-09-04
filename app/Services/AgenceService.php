@@ -3,18 +3,30 @@
 namespace App\Services;
 
 use App\Models\Agence;
+use App\Models\Image;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
 class AgenceService
 {
-    public function createAgence(array $data, int $userId)
+    public function __construct(protected MediaService $mediaService)
+    {
+    }
+    public function createAgence(array $data, int $userId, $files)
     {
         if (count($this->getAgenceFromUser($userId)) == 0) {
             $data['responsable_id'] = $userId;
 
-            return DB::transaction(function () use ($data) {
-                return Agence::create($data);
+
+            return DB::transaction(function () use ($data, $files) {
+
+                $agence = Agence::create($data);
+                foreach ($files as $file) {
+                    $media = $this->mediaService->add($file, Image::LOGO, Agence::class, $agence->id, $agence->id);
+                    $agence->agence_logo_id = $media->id;
+                    $agence->update();
+                }
+                return $agence;
             });
         } else {
             throw new Exception('User can not create multiple agence');

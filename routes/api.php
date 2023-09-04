@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Models\Agence;
 use App\Services\SmtpService;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,11 +27,14 @@ require __DIR__ . '/public.php';
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 Route::prefix('v1')->group(function () {
+    Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+        $email = $request->user()->email;
+        $user = (new UserService)->findUser($email);
+        return response()->json($user);
+    });
+
     Route::prefix('{agence}')->group(function () {
 
         Route::prefix("role")->group(function () {
