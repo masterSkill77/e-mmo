@@ -65,6 +65,7 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::prefix('estate')->group(function () {
+        Route::get('/for/{agenceId}', [EstateController::class, 'mine']);
         Route::group(['middleware' => 'auth:sanctum', 'prefix' => '/{agenceId}'], function () {
             Route::post('/', [EstateController::class, 'store']);
             Route::get('/mine', [EstateController::class, 'mine']);
@@ -73,7 +74,6 @@ Route::prefix('v1')->group(function () {
             Route::delete('/{estate}', [EstateController::class, 'destroy']);
         });
         Route::get('/', [EstateController::class, 'all']);
-        // Route::put('/{agenceId}', [EstateController::class, 'update']);
     });
 
     Route::prefix('auth')->group(function () {
