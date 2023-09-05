@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Models\Admin;
 use Livewire\Component;
@@ -10,7 +10,10 @@ use Illuminate\Support\Facades\Hash as FacadesHash;
 
 class LoginRegister extends Component
 {
-    public $users, $email, $password, $name;
+    public $users;
+    public $email;
+    public $password;
+    public $name;
     public $registerForm = false;
 
     public function render()

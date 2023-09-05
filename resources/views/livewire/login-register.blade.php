@@ -1,4 +1,4 @@
-<div>
+<div class="card p-4 w-50 mx-auto">
     <div class="row">
         <div class="col-md-12">
             @if (session()->has('message'))
@@ -62,10 +62,10 @@
                         @error('password') <span class="text-danger error">{{ $message }}</span>@enderror
                     </div>
                 </div>
-                <div class="col-md-12 text-center">
+                <div class="col-md-12 text-center my-2">
                     <button class="btn text-white btn-success" wire:click.prevent="login">Login</button>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12 my-2">
                     Don't have account? <a class="btn btn-primary text-white" wire:click.prevent="register"><strong>Register Here</strong></a>
                 </div>
             </div>
