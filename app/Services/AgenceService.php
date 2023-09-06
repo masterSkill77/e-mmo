@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Agence;
 use App\Models\Image;
+use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
@@ -18,14 +19,15 @@ class AgenceService
             $data['responsable_id'] = $userId;
 
 
-            return DB::transaction(function () use ($data, $files) {
-
+            return DB::transaction(function () use ($data, $files, $userId) {
+                $user = User::where('id', $userId)->first();
                 $agence = Agence::create($data);
                 foreach ($files as $file) {
                     $media = $this->mediaService->add($file, Image::LOGO, Agence::class, $agence->id, $agence->id);
                     $agence->agence_logo_id = $media->id;
                     $agence->update();
                 }
+                $user->user_type = 1;
                 return $agence;
             });
         } else {
