@@ -1,4 +1,5 @@
-<div class="card p-4 w-50 mx-auto">
+<div class="card p-4 w-100 mx-auto">
+
     <div class="row">
         <div class="col-md-12">
             @if (session()->has('message'))
@@ -46,6 +47,7 @@
             </div>
         </form>
     @else
+
         <form>
             <div class="row">
                 <div class="col-md-12">
@@ -71,4 +73,17 @@
             </div>
         </form>
     @endif
+
+    <style>
+        .form-control {
+            background-color: #343a40 !important;
+            color: white !important;
+            border: none !important;
+            border-bottom: 2px solid rgba(190, 155, 155, 0.327) !important
+        }
+        .form-control:focus {
+            border: none !important;
+            border-bottom: 2px solid rgba(190, 155, 155, 0.327) !important
+        }
+    </style>
 </div>
