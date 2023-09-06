@@ -75,6 +75,12 @@
                   <span class="ml-3 item-text">Metabase</span><span class="sr-only">(current)</span>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="/agence-request"class="nav-link">
+                  <i class="fe fe-home fe-16"></i>
+                  <span class="ml-3 item-text">Demande d'agence</span><span class="sr-only">(current)</span>
+                </a>
+              </li>
             </ul>
 
           </nav>
