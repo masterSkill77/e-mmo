@@ -1,6 +1,8 @@
 <?php
 
+use App\Livewire\Metabase;
 use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get("/metabase", function () {
+    return (new Metabase)->render();
+})->middleware('auth');
