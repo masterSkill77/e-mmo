@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table("questions", function ($table) {
             $table->string("type");
+            $table->string("question_for");
         });
     }
 
@@ -21,6 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table("questions", function ($table) {
+            $table->dropColumn("type");
+            $table->dropColumn("question_for");
+        });
     }
 };
