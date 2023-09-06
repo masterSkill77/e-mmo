@@ -42,7 +42,7 @@ class AgenceController extends Controller
         $agence = $this->agenceService->getAgence($agenceId);
         if (!$agence)
             throw new NotFoundHttpException();
-        $status = $this->agenceService->updateAgence($agenceId, $updateAgenceRequest->toArray());
+        $status = $this->agenceService->updateAgence($agenceId, $updateAgenceRequest->toArray(), $updateAgenceRequest->allFiles());
         return response()->json($status);
     }
     public function mine()

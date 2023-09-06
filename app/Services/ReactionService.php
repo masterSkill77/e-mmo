@@ -6,6 +6,11 @@ use App\Models\Reaction;
 
 class ReactionService
 {
+    public function getFavorites(int $userId)
+    {
+        return Reaction::where("user_id", $userId)->with("estate")->get();
+    }
+
     public function handleReaction(int $estateId, bool $vote, int $user_id,)
     {
         $status = 'created';

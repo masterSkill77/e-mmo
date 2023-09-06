@@ -43,10 +43,22 @@ class AgenceService
         return Agence::with('responsable', 'estates')->find($agenceId);
     }
 
-    public function updateAgence(int $agenceId, array $data)
+    public function updateAgence(int $agenceId, array $data, $files = [])
     {
-        $status = Agence::where('id', $agenceId)->update($data);
-        return $status;
+
+        return DB::transaction(function () use ($data, $files, $agenceId) {
+            unset($data['files-0']);
+            $media = "";
+            if (count($files) > 0) {
+                Image::where("image_type", Image::LOGO)->where("imageable_id", $agenceId)->delete();
+                foreach ($files as $file) {
+                    $media = $this->mediaService->add($file, Image::LOGO, Agence::class, $agenceId, $agenceId);
+                }
+                $data['agence_logo_id'] = $media->id;
+            }
+            $status = Agence::where('id', $agenceId)->update($data);
+            return $status;
+        });
     }
 
     public function getAgenceFromUser(int $userId)

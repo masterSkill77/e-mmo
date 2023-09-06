@@ -21,4 +21,9 @@ class ReactionController extends Controller
         $status =  $this->reactionService->handleReaction($estate->id, $vote, auth()->user()->id);
         return response()->json($status);
     }
+    public function favorites()
+    {
+        $favorites =  $this->reactionService->getFavorites(auth()->user()->id);
+        return response()->json($favorites);
+    }
 }
