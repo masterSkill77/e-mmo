@@ -9,6 +9,7 @@ class Question extends Model
 {
     use HasFactory;
     protected $fillables = [
-        'uuid'
+        'uuid',
+        'type'
     ];
 }
