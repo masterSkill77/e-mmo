@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\API\QuestionController;
 use App\Livewire\Metabase;
+use App\Models\Question;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 
@@ -20,5 +22,10 @@ Route::get('/', function () {
 });
 
 Route::get("/metabase", function () {
-    return (new Metabase)->render();
+    $questions = Question::all();
+    return view('metabase', [
+        'questions' => $questions
+    ]);
 })->middleware('auth');
+
+Route::post("/metabase", [QuestionController::class, 'store'])->middleware('auth');

@@ -83,7 +83,7 @@
           <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-lg-12">
-                    @yield('main-section')
+                    @yield('section-main')
                 </div>
             </div> <!-- .row -->
           </div> <!-- .container-fluid -->
