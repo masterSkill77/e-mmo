@@ -11,7 +11,7 @@ class MediaController extends Controller
 {
     public function getLogo(int $imageId)
     {
-        return Image::where("id", $imageId)->where('image_type', Image::LOGO)->first();
+        return Image::where("imageable_id", $imageId)->where("imageable_type", Agence::class)->where('image_type', Image::LOGO)->first();
     }
     public function uploadImage(Request $request)
     {

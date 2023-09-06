@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
     use HasFactory;
-    protected $fillables = [
+    protected $fillable = [
         'uuid',
-        'type'
+        'type',
+        'question_for'
     ];
 }

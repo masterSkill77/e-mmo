@@ -4,6 +4,7 @@ use App\Http\Controllers\API\CommentaireController;
 use App\Http\Controllers\API\ContactController;
 use App\Http\Controllers\API\EstateController;
 use App\Http\Controllers\API\MediaController;
+use App\Http\Controllers\API\QuestionController;
 use App\Http\Controllers\API\ReactionController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,5 +34,9 @@ Route::prefix("v1/public")->group(function () {
         Route::post("/{agence}", [ContactController::class, "addContact"]);
         Route::get("/{agence}", [ContactController::class, "getContactForAgence"]);
         Route::delete("/{agence}", [ContactController::class, "removeContact"]);
+    });
+
+    Route::prefix("/metabase")->group(function () {
+        Route::get("/for-{type}", [QuestionController::class, 'getQuestionFor']);
     });
 });
