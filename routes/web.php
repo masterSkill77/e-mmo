@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\QuestionController;
 use App\Livewire\Metabase;
+use App\Models\Agence;
 use App\Models\Question;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
@@ -29,10 +30,18 @@ Route::get("/metabase", function () {
 })->middleware('auth');
 
 Route::get("/agence-request", function () {
-    $questions = Question::all();
+    $agences = Agence::with('responsable')->where('active', false)->get();
     return view('agence-request', [
-        'questions' => $questions
+        'agences' => $agences
     ]);
+})->middleware('auth');
+
+
+Route::get("/agence-request/{agenceId}", function (int $agenceId) {
+    $agence = Agence::where('id', $agenceId)->first();
+    $agence->active = true;
+    $agence->save();
+    return redirect()->to(("/agence-request"));
 })->middleware('auth');
 
 
