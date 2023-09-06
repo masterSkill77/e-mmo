@@ -28,4 +28,14 @@ Route::get("/metabase", function () {
     ]);
 })->middleware('auth');
 
+Route::get("/agence-request", function () {
+    $questions = Question::all();
+    return view('agence-request', [
+        'questions' => $questions
+    ]);
+})->middleware('auth');
+
+
+
+
 Route::post("/metabase", [QuestionController::class, 'store'])->middleware('auth');
