@@ -13,4 +13,8 @@ class MediaController extends Controller
     {
         return Image::where("id", $imageId)->where('image_type', Image::LOGO)->first();
     }
+    public function uploadImage(Request $request)
+    {
+        return ($request->file("files")->getClientOriginalName());
+    }
 }

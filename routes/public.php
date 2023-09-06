@@ -20,11 +20,13 @@ Route::prefix("v1/public")->group(function () {
 
     Route::prefix("/reaction")->group(function () {
         Route::get("/", [ReactionController::class, "index"]);
+        Route::get("/favorites", [ReactionController::class, "favorites"])->middleware(["auth:sanctum"]);
         Route::get("/{estate}/{vote}", [ReactionController::class, "handleReaction"])
             ->middleware(["auth:sanctum"]);
     });
     Route::prefix("/agence")->group(function () {
         Route::get("/logo-{imageId}", [MediaController::class, 'getLogo']);
+        Route::post("/logo", [MediaController::class, 'uploadImage']);
     });
     Route::prefix("/contact")->middleware(["auth:sanctum"])->group(function () {
         Route::get("/", [ContactController::class, "getContactForUser"]);
