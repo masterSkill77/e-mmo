@@ -37,7 +37,7 @@ class AgenceService
 
     public function getAll()
     {
-        return Agence::orderBy('agence_name')->get();
+        return Agence::orderBy('created_at', 'DESC')->where("active", 1)->get();
     }
 
     public function getAgence(int $agenceId)
