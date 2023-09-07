@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AgenceController;
 use App\Http\Controllers\API\EstateController;
+use App\Http\Controllers\API\MetabaseController;
 use App\Http\Controllers\API\RoleController;
 use App\Http\Controllers\API\StaffController;
 use App\Http\Controllers\Auth\LoginController;
@@ -87,5 +88,9 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::prefix('immobilier')->group(function () {
+    });
+
+    Route::prefix("/metabase")->group(function () {
+        Route::get("{for}", MetabaseController::class);
     });
 });

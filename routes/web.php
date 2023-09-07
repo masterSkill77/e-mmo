@@ -19,7 +19,10 @@ use Livewire\Livewire;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $questions = Question::where("question_for", "admin")->get();
+    return view('welcome', [
+        'questions' => $questions
+    ]);
 });
 
 Route::get("/metabase", function () {
