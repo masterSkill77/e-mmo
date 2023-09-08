@@ -19,7 +19,7 @@ class SendComsNotificationMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(Estate $estate, Agence $agence, Commentaire $commentaire)
+    public function __construct(public Estate $estate, public  Agence $agence, public  Commentaire $commentaire)
     {
     }
 
