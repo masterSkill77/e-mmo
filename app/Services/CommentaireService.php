@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Jobs\SendNotificationCommsJob;
 use App\Models\Commentaire;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -17,6 +18,7 @@ class CommentaireService
             'email' => $email
         ]);
         $coms->save();
+        dispatch(new SendNotificationCommsJob($coms));
         return $coms;
     }
 

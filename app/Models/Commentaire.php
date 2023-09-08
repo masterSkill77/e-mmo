@@ -19,4 +19,9 @@ class Commentaire extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function estate()
+    {
+        return $this->belongsTo(Estate::class, 'estate_id');
+    }
 }
