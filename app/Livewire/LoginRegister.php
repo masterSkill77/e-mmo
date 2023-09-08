@@ -6,16 +6,15 @@ use App\Models\Admin;
 use Livewire\Component;
 use Hash;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash as FacadesHash;
 
 class LoginRegister extends Component
 {
-    public $users;
-    public $email;
-    public $password;
-    public $name;
-    public $registerForm = false;
-
+    public string $email = "";
+    public string $password = "";
+    public string $name = "";
+    public bool $registerForm = false;
     public function render()
     {
         return view('livewire.login-register');
@@ -30,14 +29,14 @@ class LoginRegister extends Component
 
     public function login()
     {
-        $validatedDate = $this->validate([
+        $validatedData = $this->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
-
-        if (\Auth::attempt(array('email' => $this->email, 'password' => $this->password))) {
+        // dd($this->password);
+        if (Auth::attempt(array('email' => $this->email, 'password' => $this->password))) {
             session()->flash('message', "You are Login successful.");
-            redirect("/");
+            return redirect("/");
         } else {
             session()->flash('error', 'email and password are wrong.');
         }
