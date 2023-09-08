@@ -9,6 +9,7 @@ class Image extends Model
 {
     use HasFactory;
     const LOGO = "LOGO";
+    const JUSTIFICATIONS = "JUSTIFICATIONS";
     const ILLUSTRATION = "ILLUSTRATION";
     public $timestamps = false;
     protected $fillable = [

@@ -18,14 +18,19 @@ class AgenceService
         if (count($this->getAgenceFromUser($userId)) == 0) {
             $data['responsable_id'] = $userId;
 
-
             return DB::transaction(function () use ($data, $files, $userId) {
                 $user = User::where('id', $userId)->first();
                 $agence = Agence::create($data);
-                foreach ($files as $file) {
+
+                if (isset($files["files-0"])) {
+                    $file = $files["files-0"];
                     $media = $this->mediaService->add($file, Image::LOGO, Agence::class, $agence->id, $agence->id);
                     $agence->agence_logo_id = $media->id;
                     $agence->update();
+                    unset($files["files-0"]);
+                }
+                foreach ($files as $file) {
+                    $media = $this->mediaService->add($file, Image::JUSTIFICATIONS, Agence::class, $agence->id, $agence->id);
                 }
                 $user->user_type = 1;
                 return $agence;
