@@ -13,25 +13,25 @@ class EstateService
     }
     public function getEstate(int $estateId)
     {
-        return Estate::with('agence', 'photos', 'reactions')->where('id', $estateId)->first();
+        return Estate::with('agence', 'photos', 'reactions', 'commentaires')->where('id', $estateId)->first();
     }
 
     public function getAll()
     {
-        return Estate::with('photos', 'agence', 'reactions')->where('is_published', 1)->orderBy('created_at', 'desc')->get();
+        return Estate::with('photos', 'agence', 'reactions', 'commentaires')->where('is_published', 1)->orderBy('created_at', 'desc')->get();
     }
 
     public function estateForAgence(int $agenceId)
     {
-        return Estate::where('agence_id', $agenceId)->with('agence', 'photos', 'reactions')->paginate(20);
+        return Estate::where('agence_id', $agenceId)->with('agence', 'photos', 'reactions', 'commentaires')->paginate(20);
     }
     public function all()
     {
-        return Estate::with('photos', 'agence', 'reactions')->orderBy('created_at', 'desc')->get();
+        return Estate::with('photos', 'agence', 'reactions', 'commentaires')->orderBy('created_at', 'desc')->get();
     }
     public function find(int $estateId)
     {
-        return Estate::where('id', $estateId)->with('agence', 'photos', 'reactions')->first();
+        return Estate::where('id', $estateId)->with('agence', 'photos', 'reactions', 'commentaires')->first();
     }
     public function createEstate(array $data, $files)
     {
