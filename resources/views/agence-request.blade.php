@@ -15,6 +15,8 @@
                     <th>Status</th>
                     <th>Email</th>
                     <th>Responsable</th>
+                    <th>Logo</th>
+                    <th>Pièce justificative</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -36,6 +38,27 @@
                         <td>
                           <small>{{ $item->responsable->name }}</small>
                         </td>
+                        <?php
+                        $logo =  (array_filter($item->photos->toArray() , fn($photo) => ($photo["image_type"] == "LOGO")))[0];
+                        ?>
+                        <td class="w-25">
+                          <a href="{{ $logo['image_path'] }}" target="_blank">
+                            <img class="w-100" src="{{ $logo['image_path'] }}" />
+                          </a>
+                          </td>
+
+                          <?php
+                          $justificatives =  (array_filter($item->photos->toArray() , fn($photo) => ($photo["image_type"] == "JUSTIFICATIONS")));
+                          ?>
+                          <td class="w-25">
+                            @foreach($justificatives as  $justification)
+                            <a href="{{ $justification['image_path'] }}" target="_blank">
+                                {{$justification['image_path']}}
+                            </a><br />
+                            @endforeach
+                            </td>
+
+
                         <td>
                             <button class="btn btn-sm dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="text-muted sr-only">Action</span>
