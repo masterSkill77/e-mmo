@@ -37,4 +37,9 @@ class Agence extends Model
     {
         return $this->hasMany(Estate::class, 'agence_id');
     }
+
+    public function photos()
+    {
+        return $this->hasMany(Image::class, 'imageable_id');
+    }
 }

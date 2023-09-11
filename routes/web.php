@@ -33,7 +33,7 @@ Route::get("/metabase", function () {
 })->middleware('auth');
 
 Route::get("/agence-request", function () {
-    $agences = Agence::with('responsable')->where('active', false)->get();
+    $agences = Agence::with(['responsable', 'photos'])->where('active', false)->get();
     return view('agence-request', [
         'agences' => $agences
     ]);
