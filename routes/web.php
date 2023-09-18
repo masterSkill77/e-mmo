@@ -35,7 +35,6 @@ Route::get("/metabase", function () {
 
 Route::get("/agence-request", function () {
     $agences = Agence::with(['responsable', 'photos'])->where('active', 0)->get();
-
     return view('agence-request', [
         'agences' => $agences
     ]);

@@ -39,7 +39,8 @@
                           <small>{{ $item->responsable->name }}</small>
                         </td>
                         <?php
-                        $logo = (array_filter($item->photos->toArray() , fn($photo) => ($photo["image_type"] == "LOGO")))[0];
+                            $item->photos = array_filter($item->photos->toArray() , fn($photo) => ($photo["imageable_type"] == "App\Models\Agence"));
+                            $logo = array_values(array_filter($item->photos , fn($photo) => ($photo["image_type"] == "LOGO")))[0];
                         ?>
                         <td class="w-10">
                           <a href="{{ $logo['image_path'] }}" target="_blank">
@@ -48,7 +49,7 @@
                           </td>
 
                           <?php
-                          $justificatives =  (array_filter($item->photos->toArray() , fn($photo) => ($photo["image_type"] == "JUSTIFICATIONS")));
+                          $justificatives =  (array_filter($item->photos , fn($photo) => ($photo["image_type"] == "JUSTIFICATIONS")));
                           ?>
                           <td class="w-25">
                             @foreach($justificatives as  $justification)
