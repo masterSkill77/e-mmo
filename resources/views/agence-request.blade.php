@@ -39,11 +39,11 @@
                           <small>{{ $item->responsable->name }}</small>
                         </td>
                         <?php
-                        $logo =  (array_filter($item->photos->toArray() , fn($photo) => ($photo["image_type"] == "LOGO")))[0];
+                        $logo = (array_filter($item->photos->toArray() , fn($photo) => ($photo["image_type"] == "LOGO")))[0];
                         ?>
-                        <td class="w-25">
+                        <td class="w-10">
                           <a href="{{ $logo['image_path'] }}" target="_blank">
-                            <img class="w-100" src="{{ $logo['image_path'] }}" />
+                            <img class="w-10" src="{{ $logo['image_path'] }}" style="border-radius: 50%; height:50px"/>
                           </a>
                           </td>
 
