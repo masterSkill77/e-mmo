@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\QuestionController;
+use App\Jobs\AgenceActivation;
 use App\Livewire\Metabase;
 use App\Models\Agence;
 use App\Models\Question;
@@ -42,11 +43,13 @@ Route::get("/agence-request", function () {
 
 
 Route::get("/agence-request/{agenceId}", function (int $agenceId) {
-    $agence = Agence::where('id', $agenceId)->first();
+    $agence = Agence::where('id', $agenceId)->with('responsable')->first();
     $agence->active = true;
+    dispatch(new AgenceActivation($agence));
     $agence->save();
     return redirect()->to(("/agence-request"));
-})->middleware('auth');
+});
+// ->middleware('auth');
 
 
 

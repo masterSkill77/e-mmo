@@ -62,5 +62,7 @@ class LoginRegister extends Component
         session()->flash('message', 'Your register successfully Go to the login page.');
 
         $this->resetInputFields();
+
+        return redirect("/");
     }
 }
