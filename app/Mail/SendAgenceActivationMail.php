@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Agence;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -16,7 +17,7 @@ class SendAgenceActivationMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(public Agence $agence)
     {
         //
     }
@@ -37,7 +38,7 @@ class SendAgenceActivationMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'mail.agence-activated',
         );
     }
 
