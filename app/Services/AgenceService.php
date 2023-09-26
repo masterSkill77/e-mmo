@@ -14,6 +14,12 @@ class AgenceService
     public function __construct(protected MediaService $mediaService)
     {
     }
+
+    public function login(Agence $agence, string $password)
+    {
+        return (Hash::check($password, $agence->password));
+    }
+
     public function createAgence(array $data, $files)
     {
 

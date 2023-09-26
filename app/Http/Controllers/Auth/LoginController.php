@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Exceptions\PasswordMismatchException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\LoginUserRequest;
 use App\Services\AgenceService;
@@ -21,8 +22,19 @@ class LoginController extends Controller
         if (!$user && !$agence) {
             throw new ModelNotFoundException('User with email : ' . $data->email . " not found");
         }
-        $user = $this->userService->login($data->email, $data->password);
-        $token = $user->getAccessToken($user->id);
-        return response()->json(['user' => $user, 'token' => $token]);
+        $connected = null;
+        if ($user) {
+            if (!$this->userService->login($data->email, $data->password)) {
+                throw new PasswordMismatchException();
+            }
+            $connected = $user;
+        } else if ($agence) {
+            if (!$this->agenceService->login($data->email, $data->password)) {
+                throw new PasswordMismatchException();
+            }
+            $connected = $agence;
+        }
+        $token = $connected->getAccessToken($connected->id, $connected::class);
+        return response()->json(['result' => $$connected, 'token' => $token]);
     }
 }

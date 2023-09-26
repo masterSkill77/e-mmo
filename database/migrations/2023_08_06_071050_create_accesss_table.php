@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('accesss', function (Blueprint $table) {
             $table->id();
             $table->string('access_token');
-            $table->unsignedBigInteger('user_id');
+            $table->string('type');
+            $table->unsignedBigInteger('token_owner_id');
             $table->timestamps();
         });
     }

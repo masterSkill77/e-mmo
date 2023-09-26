@@ -31,9 +31,7 @@ class UserService
 
     public function login(User $user, string $password)
     {
-        if (!Hash::check($password, $user->password))
-            throw new PasswordMismatchException();
-        return $user;
+        return (Hash::check($password, $user->password));
     }
     public function findUser(string $email): User | null
     {

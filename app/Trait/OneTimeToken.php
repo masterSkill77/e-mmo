@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\DB;
 trait OneTimeToken
 {
     //This is used to return one time token for each connection, to garantee that there will be one token, not multiple token
-    public function getAccessToken(int $userId): string
+    public function getAccessToken(int $ownerId, string $type): string
     {
-        $access = Access::where('user_id', $userId)->first();
+        $access = Access::where('token_owner_id', $ownerId)->where("type", $type)->first();
         if ($access)
             return $access->access_token;
         else {

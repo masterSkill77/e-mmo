@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Trait\OneTimeToken;
 use App\Trait\UseMailFromAgence;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +12,7 @@ use Laravel\Sanctum\HasApiTokens;
 class Agence extends Model
 {
 
-    use HasFactory, HasApiTokens;
+    use HasFactory, HasApiTokens, OneTimeToken;
 
     protected $fillable = [
         'agence_name',
