@@ -28,7 +28,8 @@ class AgenceController extends Controller
 
     public function store(CreateAgenceRequest $createAgenceRequest)
     {
-        $user = $this->userService->findUser($createAgenceRequest->agence_email);
+
+        $user = $this->userService->findUser($createAgenceRequest->agence_mail);
 
         if ($user)
             throw new HttpResponseException(response()->json("Email can not be used in both agence and user", Response::HTTP_BAD_REQUEST));
