@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Mail\SendAgenceActivationMail;
 use App\Models\Agence;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -29,6 +30,9 @@ class AgenceActivation implements ShouldQueue
      */
     public function handle(): void
     {
+        $user = User::where("email", $this->agence->responsable->email)->first();
+        $user->user_type = 1;
+        $user->update();
         Mail::to($this->agence->responsable->email)->send(new SendAgenceActivationMail($this->agence));
     }
 }
