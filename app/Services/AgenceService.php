@@ -61,4 +61,9 @@ class AgenceService
     {
         return Agence::with('responsable', 'estates')->where('responsable_id', $userId)->get();
     }
+
+    public function findAgence(string $email): User | null
+    {
+        return Agence::where('agence_mail', $email)->first();
+    }
 }

@@ -29,12 +29,8 @@ class UserService
         return $user;
     }
 
-    public function login(string $email, string $password)
+    public function login(User $user, string $password)
     {
-        $user = $this->findUser($email);
-        if (!$user) {
-            throw new ModelNotFoundException('User with email : ' . $email . " not found");
-        }
         if (!Hash::check($password, $user->password))
             throw new PasswordMismatchException();
         return $user;
