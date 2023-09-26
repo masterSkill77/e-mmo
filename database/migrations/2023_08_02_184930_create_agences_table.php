@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('agence_adresse', 255);
             $table->string('agence_mail', 50)->unique();
             $table->string("password", 255);
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string("agence_site_url", 30)->unique();
             $table->string("agence_logo", 255);
             $table->timestamps();
         });

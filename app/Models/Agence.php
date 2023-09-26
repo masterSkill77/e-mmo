@@ -6,22 +6,21 @@ use App\Trait\UseMailFromAgence;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Laravel\Sanctum\HasApiTokens;
 
 class Agence extends Model
 {
 
-    use HasFactory, UseMailFromAgence;
+    use HasFactory, HasApiTokens;
 
     protected $fillable = [
         'agence_name',
         'agence_phone',
         'agence_adresse',
         'agence_mail',
-
         'active',
         'agence_site_url',
-
-        'agence_logo_id',
+        'agence_logo',
         'password',
         'responsable_name'
     ];
