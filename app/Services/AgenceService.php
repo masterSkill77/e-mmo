@@ -7,35 +7,26 @@ use App\Models\Image;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class AgenceService
 {
     public function __construct(protected MediaService $mediaService)
     {
     }
-    public function createAgence(array $data, int $userId, $files)
+    public function createAgence(array $data, $files)
     {
-        if (count($this->getAgenceFromUser($userId)) == 0) {
-            $data['responsable_id'] = $userId;
 
-            return DB::transaction(function () use ($data, $files, $userId) {
-                $agence = Agence::create($data);
+        return DB::transaction(function () use ($data, $files) {
+            $data["password"] = Hash::make($data["password"]);
+            $agence = Agence::create($data);
 
-                if (isset($files["files-0"])) {
-                    $file = $files["files-0"];
-                    $media = $this->mediaService->add($file, Image::LOGO, Agence::class, $agence->id, $agence->id);
-                    $agence->agence_logo_id = $media->id;
-                    $agence->update();
-                    unset($files["files-0"]);
-                }
-                foreach ($files as $file) {
-                    $media = $this->mediaService->add($file, Image::JUSTIFICATIONS, Agence::class, $agence->id, $agence->id);
-                }
-                return $agence;
-            });
-        } else {
-            throw new Exception('User can not create multiple agence');
-        }
+            /**
+             * mettre le code pour le logo ici
+             */
+
+            return $agence;
+        });
     }
 
     public function getAll()

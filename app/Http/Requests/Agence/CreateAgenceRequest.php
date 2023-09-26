@@ -26,15 +26,12 @@ class CreateAgenceRequest extends FormRequest
         return [
             'agence_name' => 'bail|required|unique:agences',
             'agence_phone' => 'required|unique:agences',
-            'agence_site_url' => 'string',
+            'agence_site_url' => 'string|unique:agences',
             'agence_adresse' => 'required',
-            'agence_status' => 'required',
+            'agence_logo' => 'required',
+            'password' => 'required',
             'agence_mail' => 'required|email|unique:agences',
-            'agence_sender_mail' => 'required|email',
-            'agence_smtp_host' => 'string',
-            'agence_smtp_port' => 'integer',
-            'agence_smtp_username' => 'string',
-            "agence_smtp_password" => 'required|string',
+            'responsable_name' => 'required',
         ];
     }
 }

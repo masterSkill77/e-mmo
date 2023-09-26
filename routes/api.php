@@ -60,8 +60,8 @@ Route::prefix('v1')->group(function () {
     });
     // ->middleware(['auth:sanctum']);
     Route::prefix('agence')->group(function () {
+        Route::post('/', [AgenceController::class, 'store']);
         Route::group(['middleware' => 'auth:sanctum'], function () {
-            Route::post('/', [AgenceController::class, 'store']);
             Route::post('/{agenceId}', [AgenceController::class, 'update']);
             Route::get('/mine', [AgenceController::class, 'mine']);
         });
