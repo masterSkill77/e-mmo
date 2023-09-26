@@ -42,4 +42,13 @@ class MediaService
     {
         return Image::where("id", $id)->first();
     }
+
+    public function storeLogoImage($file, int $agenceId)
+    {
+        $originalName = $file->getClientOriginalName();
+        $path = "/storage/$agenceId/logo/$originalName";
+        $realPath = "/public/$agenceId/logo/$originalName";
+        Storage::disk('local')->put($realPath, file_get_contents($file));
+        return $path;
+    }
 }

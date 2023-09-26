@@ -25,12 +25,17 @@ class AgenceService
 
         return DB::transaction(function () use ($data, $files) {
             $data["password"] = Hash::make($data["password"]);
+            $data["agence_logo"] = "logo";
             $agence = Agence::create($data);
-
-            /**
-             * mettre le code pour le logo ici
-             */
-
+            foreach ($files as  $index => $file) {
+                if ($index == "files-0") {
+                    $path = $this->mediaService->storeLogoImage($file, $agence->id);
+                    $agence->agence_logo = $path;
+                    $agence->update();
+                } else {
+                    $this->mediaService->add($file, Image::ILLUSTRATION, Agence::class, $agence->id, $agence->id);
+                }
+            }
             return $agence;
         });
     }

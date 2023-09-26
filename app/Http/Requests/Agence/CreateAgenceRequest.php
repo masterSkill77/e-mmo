@@ -28,7 +28,6 @@ class CreateAgenceRequest extends FormRequest
             'agence_phone' => 'required|unique:agences',
             'agence_site_url' => 'string|unique:agences',
             'agence_adresse' => 'required',
-            'agence_logo' => 'required',
             'password' => 'required',
             'agence_mail' => 'required|email|unique:agences',
             'responsable_name' => 'required',
