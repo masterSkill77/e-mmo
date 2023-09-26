@@ -19,7 +19,6 @@ class AgenceService
             $data['responsable_id'] = $userId;
 
             return DB::transaction(function () use ($data, $files, $userId) {
-                $user = User::where('id', $userId)->first();
                 $agence = Agence::create($data);
 
                 if (isset($files["files-0"])) {
@@ -32,7 +31,6 @@ class AgenceService
                 foreach ($files as $file) {
                     $media = $this->mediaService->add($file, Image::JUSTIFICATIONS, Agence::class, $agence->id, $agence->id);
                 }
-                $user->user_type = 1;
                 return $agence;
             });
         } else {
