@@ -16,17 +16,9 @@ return new class extends Migration
             $table->string('agence_name', 50)->unique();
             $table->string('agence_phone', 20);
             $table->string('agence_adresse', 255);
-            $table->string('agence_status', 12);
             $table->string('agence_mail', 50);
-            $table->string('agence_sender_mail');
-            $table->string('agence_smtp_host', 50);
-            $table->addColumn('integer', 'agence_smtp_port');
-            $table->string('agence_smtp_username');
-            $table->string('agence_logo_id')->nullable();
-            $table->string('agence_site_url', 255)->nullable();
-            $table->string("agence_smtp_password");
-            $table->unsignedBigInteger('responsable_id')->unique();
-            $table->foreign('responsable_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->string("password", 255);
+            $table->string("agence_logo", 255);
             $table->timestamps();
         });
     }
