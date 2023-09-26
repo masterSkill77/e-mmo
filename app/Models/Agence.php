@@ -25,10 +25,6 @@ class Agence extends Model
         'password',
         'responsable_name'
     ];
-    public function responsable(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'responsable_id');
-    }
 
     public function estates()
     {
