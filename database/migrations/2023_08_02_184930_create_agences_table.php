@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('agences', function (Blueprint $table) {
             $table->id();
             $table->string('agence_name', 50)->unique();
-            $table->string('agence_phone', 20);
+            $table->string('agence_phone', 20)->unique();
+            $table->string('responsable_name', 20);
             $table->string('agence_adresse', 255);
-            $table->string('agence_mail', 50);
+            $table->string('agence_mail', 50)->unique();
             $table->string("password", 255);
             $table->string("agence_logo", 255);
             $table->timestamps();

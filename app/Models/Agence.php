@@ -16,17 +16,14 @@ class Agence extends Model
         'agence_name',
         'agence_phone',
         'agence_adresse',
-        'agence_status',
         'agence_mail',
-        'agence_sender_mail',
-        'agence_smtp_host',
+
         'active',
         'agence_site_url',
-        'agence_smtp_port',
-        'agence_smtp_username',
+
         'agence_logo_id',
-        'agence_smtp_password',
-        'responsable_id'
+        'password',
+        'responsable_name'
     ];
     public function responsable(): BelongsTo
     {
