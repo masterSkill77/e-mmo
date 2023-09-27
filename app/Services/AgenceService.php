@@ -63,8 +63,8 @@ class AgenceService
                 }
                 $data['agence_logo_id'] = $media->id;
             }
-            $status = Agence::where('id', $agenceId)->update($data);
-            return $status;
+            Agence::where('id', $agenceId)->update($data);
+            return Agence::where("id", $agenceId)->get();
         });
     }
 
