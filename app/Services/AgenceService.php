@@ -57,11 +57,10 @@ class AgenceService
             unset($data['files-0']);
             $media = "";
             if (count($files) > 0) {
-                Image::where("image_type", Image::LOGO)->where("imageable_id", $agenceId)->delete();
                 foreach ($files as $file) {
-                    $media = $this->mediaService->add($file, Image::LOGO, Agence::class, $agenceId, $agenceId);
+                    $media = $this->mediaService->storeLogoImage($file,  $agenceId);
                 }
-                $data['agence_logo_id'] = $media->id;
+                $data['agence_logo'] = $media;
             }
             Agence::where('id', $agenceId)->update($data);
             return Agence::where("id", $agenceId)->get();
