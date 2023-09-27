@@ -25,7 +25,7 @@ class LoginController extends Controller
         }
         $connected = null;
         if ($user) {
-            if (!$this->userService->login($data->email, $data->password)) {
+            if (!$this->userService->login($user, $data->password)) {
                 throw new PasswordMismatchException();
             }
             $connected = $user;
