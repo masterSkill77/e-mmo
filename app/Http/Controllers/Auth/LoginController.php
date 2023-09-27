@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Exceptions\PasswordMismatchException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\LoginUserRequest;
+use App\Models\User;
 use App\Services\AgenceService;
 use App\Services\UserService;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -35,6 +36,8 @@ class LoginController extends Controller
             $connected = $agence;
         }
         $token = $connected->getAccessToken($connected->id, get_class($connected));
-        return response()->json(['result' => $connected, 'token' => $token, 'connected_usertype' => get_class($connected)]);
+        $usertype = get_class($connected) == User::class ? 'user' : 'agence';
+
+        return response()->json(['result' => $connected, 'token' => $token, 'connected_usertype' => $usertype]);
     }
 }
