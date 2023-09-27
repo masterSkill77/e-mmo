@@ -29,12 +29,12 @@ class LoginController extends Controller
             }
             $connected = $user;
         } else if ($agence) {
-            if (!$this->agenceService->login($data->email, $data->password)) {
+            if (!$this->agenceService->login($agence, $data->password)) {
                 throw new PasswordMismatchException();
             }
             $connected = $agence;
         }
-        $token = $connected->getAccessToken($connected->id, $connected::class);
-        return response()->json(['result' => $$connected, 'token' => $token]);
+        $token = $connected->getAccessToken($connected->id, get_class($connected));
+        return response()->json(['result' => $connected, 'token' => $token]);
     }
 }

@@ -9,5 +9,5 @@ class Access extends Model
 {
     use HasFactory;
     public $table = "accesss";
-    protected $fillable = ['access_token', 'user_id'];
+    protected $fillable = ['access_token', 'token_owner_id', 'type'];
 }

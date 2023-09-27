@@ -15,15 +15,16 @@ trait OneTimeToken
             return $access->access_token;
         else {
             $token = $this->createToken(ENV('APP_KEY'));
-            $access = $this->createAccess($token->plainTextToken);
+            $access = $this->createAccess($token->plainTextToken, $type);
             return $access->access_token;
         }
     }
-    public function createAccess(string $access_token)
+    public function createAccess(string $access_token, string $type)
     {
         $newAccess = new Access([
             'access_token' => $access_token,
-            'user_id' => $this->id
+            'token_owner_id' => $this->id,
+            'type' => $type
         ]);
         $newAccess->save();
         return $newAccess;
