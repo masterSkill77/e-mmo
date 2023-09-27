@@ -35,6 +35,6 @@ class UserService
     }
     public function findUser(string $email): User | null
     {
-        return User::where('email', $email)->with('agence')->first();
+        return User::where('email', $email)->first();
     }
 }
