@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\CreateUserRequest;
+use App\Models\User;
 use App\Services\AgenceService;
 use App\Services\UserService;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -24,7 +25,7 @@ class RegisterController extends Controller
         $user = $this->userService->createUser($data->toArray());
         $token = $user->createToken(ENV('APP_KEY'));
 
-        $user->createAccess($token->plainTextToken);
+        $user->createAccess($token->plainTextToken, User::class);
 
         return response()->json(['user' => $user, 'token' => $token->plainTextToken]);
     }
