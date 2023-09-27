@@ -31,7 +31,7 @@ class Estate extends Model
 
     public function photos()
     {
-        return $this->hasMany(Image::class, 'imageable_id');
+        return $this->morphMany(Image::class, 'imageable');
     }
 
     public function reactions()
