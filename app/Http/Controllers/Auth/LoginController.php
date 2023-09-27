@@ -35,6 +35,6 @@ class LoginController extends Controller
             $connected = $agence;
         }
         $token = $connected->getAccessToken($connected->id, get_class($connected));
-        return response()->json(['result' => $connected, 'token' => $token]);
+        return response()->json(['result' => $connected, 'token' => $token, 'connected_usertype' => get_class($connected)]);
     }
 }
