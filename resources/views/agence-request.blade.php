@@ -12,7 +12,6 @@
                   <tr>
                     <th>ID</th>
                     <th>Nom</th>
-                    <th>Status</th>
                     <th>Email</th>
                     <th>Responsable</th>
                     <th>Logo</th>
@@ -30,29 +29,24 @@
                             <small>{{ $item->agence_name }}</small>
                         </td>
                         <td>
-                            <small>{{ $item->agence_status }}</small>
-                        </td>
-                        <td>
                             <small>{{ $item->agence_mail }}</small>
                           </td>
                         <td>
-                          <small>{{ $item->responsable->name }}</small>
+                          <small>{{ $item->responsable_name }}</small>
                         </td>
                         <?php
-                            $item->photos = array_filter($item->photos->toArray() , fn($photo) => ($photo["imageable_type"] == "App\Models\Agence"));
-                            $logo = array_values(array_filter($item->photos , fn($photo) => ($photo["image_type"] == "LOGO")))[0];
+                            
                         ?>
-                        <td class="w-10">
-                          <a href="{{ $logo['image_path'] }}" target="_blank">
-                            <img class="w-10" src="{{ $logo['image_path'] }}" style="border-radius: 50%; height:50px"/>
+                        <td class="w-25">
+                          <a href="{{ $item['agence_logo'] }}" target="_blank">
+                            <img class="w-25" src="{{ $item['agence_logo'] }}" style="width:50px; height:50px; object-fit: cover"/>
                           </a>
                           </td>
 
                           <?php
-                          $justificatives =  (array_filter($item->photos , fn($photo) => ($photo["image_type"] == "JUSTIFICATIONS")));
                           ?>
                           <td class="w-25">
-                            @foreach($justificatives as  $justification)
+                            @foreach($item->photos->toArray() as  $justification)
                             <a href="{{ $justification['image_path'] }}" target="_blank">
                                 {{$justification['image_path']}}
                             </a><br />

@@ -36,7 +36,7 @@ class LoginRegister extends Component
         // dd($this->password);
         if (Auth::attempt(array('email' => $this->email, 'password' => $this->password))) {
             session()->flash('message', "You are Login successful.");
-            return redirect("/");
+            return redirect("/agence-request");
         } else {
             session()->flash('error', 'email and password are wrong.');
         }

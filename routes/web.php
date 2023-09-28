@@ -34,7 +34,7 @@ Route::get("/metabase", function () {
 })->middleware('auth');
 
 Route::get("/agence-request", function () {
-    $agences = Agence::with(['responsable', 'photos'])->where('active', 0)->get();
+    $agences = Agence::with(['photos'])->where('active', 0)->get();
     return view('agence-request', [
         'agences' => $agences
     ]);
@@ -42,7 +42,7 @@ Route::get("/agence-request", function () {
 
 
 Route::get("/agence-request/{agenceId}", function (int $agenceId) {
-    $agence = Agence::where('id', $agenceId)->with('responsable')->first();
+    $agence = Agence::where('id', $agenceId)->first();
     $agence->active = true;
     dispatch(new AgenceActivation($agence));
     $agence->save();

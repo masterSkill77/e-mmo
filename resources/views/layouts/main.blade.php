@@ -64,21 +64,21 @@
             </div>
             <ul class="navbar-nav flex-fill w-100 mb-2">
               <li class="nav-item">
-                <a href="/"class="nav-link">
+                <a href="/agence-request"class="nav-link">
                   <i class="fe fe-home fe-16"></i>
-                  <span class="ml-3 item-text">Dashboard</span><span class="sr-only">(current)</span>
+                  <span class="ml-3 item-text">Demandes</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/"class="nav-link">
+                  <i class="fe fe-folder-plus fe-16"></i>
+                  <span class="ml-3 item-text">Dashboard</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/metabase"class="nav-link">
-                  <i class="fe fe-home fe-16"></i>
-                  <span class="ml-3 item-text">Metabase</span><span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/agence-request"class="nav-link">
-                  <i class="fe fe-home fe-16"></i>
-                  <span class="ml-3 item-text">Demande d'agence</span><span class="sr-only">(current)</span>
+                  <i class="fe fe-monitor fe-16"></i>
+                  <span class="ml-3 item-text">Metabase</span>
                 </a>
               </li>
             </ul>

@@ -30,9 +30,6 @@ class AgenceActivation implements ShouldQueue
      */
     public function handle(): void
     {
-        $user = User::where("email", $this->agence->responsable->email)->first();
-        $user->user_type = 1;
-        $user->update();
-        Mail::to($this->agence->responsable->email)->send(new SendAgenceActivationMail($this->agence));
+        Mail::to($this->agence->agence_mail)->send(new SendAgenceActivationMail($this->agence));
     }
 }
