@@ -37,9 +37,9 @@
                         <?php
                             
                         ?>
-                        <td class="w-25">
+                        <td class="w-10">
                           <a href="{{ $item['agence_logo'] }}" target="_blank">
-                            <img class="w-25" src="{{ $item['agence_logo'] }}" style="width:50px; height:50px; object-fit: cover"/>
+                            <img class="w-10" src="{{ $item['agence_logo'] }}" style="width:50px; height:50px; object-fit: cover"/>
                           </a>
                           </td>
 
