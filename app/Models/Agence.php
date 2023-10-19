@@ -35,4 +35,8 @@ class Agence extends Model
     {
         return $this->hasMany(Image::class, 'imageable_id');
     }
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class, 'agence_id');
+    }
 }
