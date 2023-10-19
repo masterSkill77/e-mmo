@@ -46,12 +46,12 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function agence()
-    {
-        return $this->hasMany(Agence::class, 'responsable_id');
-    }
-
     protected $dispatchesEvents = [
         'created' => \App\Events\User\UserRegistered::class,
     ];
+
+    public function rated()
+    {
+        return $this->hasMany(Rating::class, 'user_id');
+    }
 }

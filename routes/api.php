@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\AgenceController;
 use App\Http\Controllers\API\EstateController;
 use App\Http\Controllers\API\MetabaseController;
+use App\Http\Controllers\API\RatingController;
 use App\Http\Controllers\API\RoleController;
 use App\Http\Controllers\API\StaffController;
 use App\Http\Controllers\Auth\LoginController;
@@ -37,6 +38,10 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::prefix('{agence}')->group(function () {
+        Route::prefix('rating')->middleware('auth:sanctum')->group(function () {
+            Route::post('/', [RatingController::class, 'rateAgence']);
+            Route::get('/user', [RatingController::class, 'ratedAgenceByUser']);
+        });
 
         Route::prefix("role")->group(function () {
             Route::get('/', [RoleController::class, 'roleForAgence']);
