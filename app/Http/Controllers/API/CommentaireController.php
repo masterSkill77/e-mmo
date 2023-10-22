@@ -15,8 +15,8 @@ class CommentaireController extends Controller
     public function registerCommentaire(Estate $estate, string | int $user_id)
     {
         $contenu = request("contenu");
-        $email = request("email");
-        $comment = $this->commentaireService->registerCommentaire($contenu, $estate, $user_id, $email);
+        $type = request("type");
+        $comment = $this->commentaireService->registerCommentaire($contenu, $estate, $user_id, $type);
         return response()->json($comment);
     }
     public function getCommentaire(Estate $estate)
