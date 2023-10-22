@@ -29,11 +29,15 @@ class CommentaireService
     {
         return Commentaire::where("estate_id", $estateId)->with('user', 'agence')->get();
     }
-    public function updateCommentaire(int $estateId, string $content)
+    public function updateCommentaire(int $commentaireId, string $contenu)
     {
-        $commentaire =  Commentaire::where("estate_id", $estateId)->first();
-        $commentaire->content = $content;
+        $commentaire =  Commentaire::where("id", $commentaireId)->first();
+        $commentaire->contenu = $contenu;
         $commentaire->update();
+        return $commentaire;
+    }public function removeCommentaire(int $commentaireId) {
+        $commentaire =  Commentaire::where("id", $commentaireId)->first();
+        $commentaire->delete();
         return $commentaire;
     }
 }

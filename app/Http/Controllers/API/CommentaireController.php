@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Commentaire;
 use App\Models\Estate;
 use App\Services\CommentaireService;
 use Illuminate\Http\Client\Request;
+use Illuminate\Http\Request as HttpRequest;
 
 class CommentaireController extends Controller
 {
@@ -24,10 +26,15 @@ class CommentaireController extends Controller
         $commentaires = $this->commentaireService->getCommentaire($estate->id);
         return response()->json($commentaires);
     }
-    public function updateCommentaire(Request $request, Estate $estate)
+    public function updateCommentaire(HttpRequest $request, Commentaire $commentaire)
     {
-        $content = $request->input('content');
-        $commentaires = $this->commentaireService->updateCommentaire($estate->id, $content);
+        
+        $contenu = $request->input('contenu');
+        $commentaires = $this->commentaireService->updateCommentaire($commentaire->id, $contenu);
+        return response()->json($commentaires);
+    }
+    public function removeCommentaire(Commentaire $commentaire) {
+        $commentaires = $this->commentaireService->removeCommentaire($commentaire->id);
         return response()->json($commentaires);
     }
 }
