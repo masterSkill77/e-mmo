@@ -16,6 +16,7 @@ Route::prefix("v1/public")->group(function () {
     });
     Route::prefix("/commentaire")->group(function () {
         Route::get("/{estate}", [CommentaireController::class, "getCommentaire"]);
+        Route::put("/{estate}", [CommentaireController::class, "updateCommentaire"]);
         Route::post("/{estate}/{userId}", [CommentaireController::class, "registerCommentaire"]);
     });
 

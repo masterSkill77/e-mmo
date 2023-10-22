@@ -24,4 +24,10 @@ class CommentaireController extends Controller
         $commentaires = $this->commentaireService->getCommentaire($estate->id);
         return response()->json($commentaires);
     }
+    public function updateCommentaire(Request $request, Estate $estate)
+    {
+        $content = $request->input('content');
+        $commentaires = $this->commentaireService->updateCommentaire($estate->id, $content);
+        return response()->json($commentaires);
+    }
 }
