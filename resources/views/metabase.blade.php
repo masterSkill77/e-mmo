@@ -2,42 +2,31 @@
 @section('section-main')
 <div class="col-lg-12">
 
-        <h2>Metabase dashboard
+        <h2 class="mb-4">Metabase Dashboard
                 <small  data-toggle="modal" data-target="#defaultModal" ><i style="cursor:pointer" class="fe fe-24 fe-plus"></i></small>
         </h2>
     </div>
 
         <div class="card shadow">
             <div class="card-body">
-              <div class="toolbar">
-                <form class="form">
-                  <div class="form-row">
-                    <div class="form-group col-auto">
-                      <label for="search" class="sr-only">Search</label>
-                      <input type="text" class="form-control" id="search1" value="" placeholder="Search">
-                    </div>
-                  </div>
-                </form>
-              </div>
               <table class="table table-borderless table-hover">
                 <thead>
                   <tr>
-                    <th>ID</th>
+                    <th>UID</th>
                     <th>Type</th>
-                    <th>Pour</th>
+                    <th>For</th>
                   </tr>
                 </thead>
                 <tbody>
                     @foreach ($questions as $item)
                     <tr>
-
                         <td>
                             <small>{{ $item->uuid }}</small>
                         </td>
-                        <td>
+                        <td class="w-25" >
                             <small>{{ $item->type }}</small>
                           </td>
-                        <td>
+                        <td class="w-25">
                           <small>{{ $item->question_for }}</small>
                         </td>
                       </tr>
@@ -51,7 +40,7 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="defaultModalLabel">Ajouter un nouveau card</h5>
+                  <h5 class="modal-title ml-3" id="defaultModalLabel">Add a new card</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                   </button>
@@ -61,7 +50,7 @@
                 <div class="modal-body">
                     <div class="col-md-12">
                         <div class="form-group mb-3">
-                          <label for="example-helping">UUID de l'application</label>
+                          <label for="example-helping">UUID of the question/dashboard</label>
                           <input type="text" id="example-helping" class="form-control" placeholder="UUID" name="uuid">
                         </div>
                         <div class="form-group mb-3">
@@ -73,10 +62,10 @@
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="example-readonly">Pour </label>
+                            <label for="example-readonly">For </label>
                             <select class="custom-select" id="custom-select" name="question_for">
-                                <option value="admin">Admin</option>
-                                <option value="agence">Agence</option>
+                                <option value="admin">Administrator</option>
+                                <option value="agence">Estate Agency</option>
                             </select>
                         </div>
                     </div>

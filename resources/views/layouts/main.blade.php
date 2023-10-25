@@ -40,9 +40,6 @@
           <button type="button" class="navbar-toggler text-muted mt-2 p-0 mr-3 collapseSidebar">
             <i class="fe fe-menu navbar-toggler-icon"></i>
           </button>
-          <form class="form-inline mr-auto searchform text-muted">
-            <input class="form-control mr-sm-2 bg-transparent border-0 pl-4 text-muted" type="search" placeholder="Type something..." aria-label="Search">
-          </form>
 
         </nav>
         <aside class="sidebar-left border-right bg-white shadow" id="leftSidebar" data-simplebar>
@@ -65,19 +62,19 @@
             <ul class="navbar-nav flex-fill w-100 mb-2">
               <li class="nav-item">
                 <a href="/agence-request"class="nav-link">
-                  <i class="fe fe-home fe-16"></i>
-                  <span class="ml-3 item-text">Demandes</span>
+                  <i class="fe fe-loader fe-16"></i>
+                  <span class="ml-3 item-text">Request</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/"class="nav-link">
-                  <i class="fe fe-folder-plus fe-16"></i>
+                  <i class="fe fe-monitor fe-16"></i>
                   <span class="ml-3 item-text">Dashboard</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/metabase"class="nav-link">
-                  <i class="fe fe-monitor fe-16"></i>
+                  <i class="fe fe-activity fe-16"></i>
                   <span class="ml-3 item-text">Metabase</span>
                 </a>
               </li>

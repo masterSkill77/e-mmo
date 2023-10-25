@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('section-main')
 <div class="col-lg-12">
-        <h2>Demande de création d'agence
+        <h2 class="mb-4">Estate Agency Request
         </h2>
     </div>
 
@@ -11,11 +11,11 @@
                 <thead>
                   <tr>
                     <th>ID</th>
-                    <th>Nom</th>
-                    <th>Email</th>
-                    <th>Responsable</th>
+                    <th>Name</th>
+                    <th>E-mail Address</th>
+                    <th>Manager</th>
                     <th>Logo</th>
-                    <th>Pièce justificative</th>
+                    <th>Attachment </th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -45,10 +45,11 @@
 
                           <?php
                           ?>
-                          <td class="w-25">
+                          <td class="w-10">
                             @foreach($item->photos->toArray() as  $justification)
                             <a href="{{ $justification['image_path'] }}" target="_blank">
-                                {{$justification['image_path']}}
+                                <!-- {{$justification['image_path']}} -->
+                                Attachement 1
                             </a><br />
                             @endforeach
                             </td>
@@ -59,7 +60,7 @@
                                 <span class="text-muted sr-only">Action</span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="/agence-request/{{$item->id}}">Activer</a>
+                            <a class="dropdown-item" href="/agence-request/{{$item->id}}">Activate</a>
                             </div>
                         </td>
                       </tr>
