@@ -17,6 +17,7 @@
     @if($registerForm)
         <form>
             <div class="row">
+                <h3 class="d-flex justify-content-center w-100">E-mmobilier</h3>
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Name :</label>
@@ -49,6 +50,7 @@
     @else
 
         <form>
+            <h3 class="d-flex justify-content-center w-100">E-mmobilier</h3>
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
@@ -67,7 +69,7 @@
                 <div class="col-md-12 text-center my-2">
                     <button class="btn text-white btn-success" wire:click.prevent="login">Login</button>
                 </div>
-                <div class="col-md-12 my-2">
+                <div class="mt-4 col-md-12 my-2">
                     Don't have account? <a class="btn btn-primary text-white" wire:click.prevent="register"><strong>Register Here</strong></a>
                 </div>
             </div>

@@ -70,8 +70,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Fermer</button>
-                        <button type="submit" class="btn mb-2 btn-primary">Sauvegarder</button>
+                        <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn mb-2 btn-primary">Save</button>
                     </div>
                 </form>
                 </div>
